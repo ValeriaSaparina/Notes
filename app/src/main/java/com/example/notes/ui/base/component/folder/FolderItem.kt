@@ -1,6 +1,5 @@
-package com.example.notes.ui.base.component
+package com.example.notes.ui.base.component.folder
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,7 +25,7 @@ import com.example.notes.ui.base.data.FolderItemUiModel
 import com.example.notes.ui.theme.NotesTheme
 
 @Composable
-fun FolderItem(modifier: Modifier = Modifier, data: FolderItemUiModel, isDivider: Boolean) {
+fun FolderItem(modifier: Modifier = Modifier, data: FolderItemUiModel, isDivider: Boolean = false) {
     Column {
 
 
@@ -57,7 +56,6 @@ fun FolderItem(modifier: Modifier = Modifier, data: FolderItemUiModel, isDivider
             )
         }
         if (isDivider) {
-            Log.d("FOLDER ITEM", "spacer()")
             Spacer(
                 modifier = Modifier
                     .fillMaxWidth()

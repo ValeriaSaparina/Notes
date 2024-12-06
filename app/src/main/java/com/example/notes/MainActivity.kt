@@ -10,8 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.notes.ui.base.component.ExpandableList
+import com.example.notes.ui.base.component.folder.ExpandableList
 import com.example.notes.ui.base.data.FolderItemUiModel
+import com.example.notes.ui.base.data.NoteItemUiModel
 import com.example.notes.ui.base.data.SectionData
 import com.example.notes.ui.theme.NotesTheme
 
@@ -27,7 +28,7 @@ class MainActivity : ComponentActivity() {
                     ExpandableList(
                         listOf(
                             SectionData(
-                                "Remote",
+                                "Folder",
                                 items = listOf(
                                     FolderItemUiModel.getDefault(),
                                     FolderItemUiModel.getDefault(),
@@ -35,11 +36,11 @@ class MainActivity : ComponentActivity() {
                                 )
                             ),
                             SectionData(
-                                "Tags",
+                                "Notes",
                                 items = listOf(
-                                    FolderItemUiModel.getDefault(),
-                                    FolderItemUiModel.getDefault(),
-                                    FolderItemUiModel.getDefault()
+                                    NoteItemUiModel.getDefault(),
+                                    NoteItemUiModel.getDefault(),
+                                    NoteItemUiModel.getDefault()
                                 )
                             ),
                         )

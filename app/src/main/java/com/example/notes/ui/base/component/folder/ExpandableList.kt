@@ -1,4 +1,4 @@
-package com.example.notes.ui.base.component
+package com.example.notes.ui.base.component.folder
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.notes.ui.base.data.FolderItemUiModel
 import com.example.notes.ui.base.data.SectionData
+import com.example.notes.ui.base.utils.ExpandedListItem
 import com.example.notes.ui.base.utils.rememberSavableSnapshotStateMap
 
 @Composable
@@ -74,7 +75,7 @@ fun LazyListScope.section(
                 animationSpec = tween(ANIMATION_DURATION)
             )
         ) {
-            FolderItem(
+            ExpandedListItem(
                 modifier = modifier,
                 data = item,
                 isDivider = index != sectionData.items.lastIndex

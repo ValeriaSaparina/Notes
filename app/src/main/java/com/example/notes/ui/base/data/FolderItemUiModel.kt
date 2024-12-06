@@ -8,7 +8,7 @@ data class FolderItemUiModel(
     @DrawableRes val iconId: Int,
     val name: String,
     val notesNumber: String
-) {
+) : SectionItem {
     companion object {
         fun getDefault() = FolderItemUiModel(
             id = "testId",

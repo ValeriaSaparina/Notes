@@ -1,4 +1,4 @@
-package com.example.notes.ui.base.component
+package com.example.notes.ui.base.component.folder
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.notes.R
@@ -37,7 +38,7 @@ fun SectionHeader(sectionData: SectionData, isExpanded: Boolean, onHeaderClick: 
             text = sectionData.headerText,
         )
         val rotate = if (isExpanded) 90F else 0F
-        GetImage(id = R.drawable.outline_keyboard_arrow_right_24, rotate = rotate)
+        GetImage(id = R.drawable.outline_keyboard_arrow_right_24, modifier = Modifier.rotate(rotate))
     }
 
 }
