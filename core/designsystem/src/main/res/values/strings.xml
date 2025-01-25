@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Notes</string>
+    <string name="local_name_folder">Local folders</string>
+    <string name="remote_name_folder">Remote folders</string>
+    <string name="something_went_wrong">Something went wrong</string>
+</resources>
