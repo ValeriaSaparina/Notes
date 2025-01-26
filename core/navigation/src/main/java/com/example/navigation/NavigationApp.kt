@@ -1,5 +1,6 @@
 package com.example.navigation
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import androidx.navigation.NavType
@@ -12,7 +13,9 @@ import com.example.navigation.Navigation.Args.NOTES
 import com.example.navigation.Navigation.Args.NOTE_ID
 import com.example.navigation.Navigation.Routes.FOLDERS_PATH
 import com.example.navigation.Navigation.Routes.NOTES_PATH
+import com.example.navigation.Navigation.Routes.NOTE_PATH
 import com.example.navigation.destination.FoldersScreenDestination
+import com.example.navigation.destination.NoteScreenDestination
 import com.example.navigation.destination.NotesScreenDestination
 
 @Composable
@@ -37,23 +40,24 @@ fun NavigationApp() {
                 requireNotNull(navBackStackEntry.arguments?.getLong(FOLDER_ID)) { "Folder id is required as an argument" }
             NotesScreenDestination(navController = navController, folderId = folderId)
         }
-//
-//        composable(
-//            route = NOTE_PATH,
-//            arguments = listOf(
-//                navArgument(name = FOLDER_ID) { type = NavType.StringType }
-//            )
-//        ) { navBackStackEntry ->
-//            val folderId =
-//                requireNotNull(navBackStackEntry.arguments?.getString(FOLDER_ID)) { "Folder id is required as an argument" }
-//            val noteId =
-//                requireNotNull(navBackStackEntry.arguments?.getString(FOLDER_ID)) { "Note id is required as an argument" }
-////            NoteScreenDestination(
-////                navController = navController,
-////                folderId = folderId,
-////                noteId = noteId
-////            )
-//        }
+
+        composable(
+            route = NOTE_PATH,
+            arguments = listOf(
+                navArgument(name = FOLDER_ID) { type = NavType.LongType },
+                navArgument(name = NOTE_ID) { type = NavType.LongType }
+            )
+        ) { navBackStackEntry ->
+            val folderId =
+                requireNotNull(navBackStackEntry.arguments?.getLong(FOLDER_ID)) { "Folder id is required as an argument" }
+            val noteId =
+                requireNotNull(navBackStackEntry.arguments?.getLong(NOTE_ID)) { "Note id is required as an argument" }
+            NoteScreenDestination(
+                navController = navController,
+                folderId = folderId,
+                noteId = noteId
+            )
+        }
     }
 
 }
@@ -69,7 +73,7 @@ object Navigation {
 
     object Routes {
         const val FOLDERS_PATH = "folders"
-        const val NOTE_PATH = "${FOLDER_ID}/$NOTES/${NOTE_ID}"
+        const val NOTE_PATH = "{${FOLDER_ID}}/$NOTES/{${NOTE_ID}}"
         const val NOTES_PATH = "$FOLDERS_PATH/{${FOLDER_ID}}"
 
     }
@@ -80,6 +84,7 @@ fun NavController.navigateToNotes(folderId: Long) {
 }
 
 fun NavController.navigateToNote(folderId: Long, noteId: Long) {
+    Log.d("NAVIGATION", "TO NOTE IN NAV FUN ID = $noteId")
     navigate(route = "$folderId/$NOTES/$noteId")
 }
 

@@ -6,7 +6,6 @@ import androidx.navigation.NavHostController
 import com.example.navigation.navigateToNote
 import com.example.notes.impl.presentation.NotesViewModel
 import com.example.notes.impl.presentation.model.NotesContract.Effect
-import com.example.notes.impl.presentation.model.NotesContract.Event
 import com.example.notes.impl.presentation.ui.NotesScreen
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
@@ -21,10 +20,14 @@ fun NotesScreenDestination(navController: NavHostController, folderId: Long) {
         onEventSent = { event -> viewModel.setEvent(event) },
         onNavigationRequested = { effect ->
             when (effect) {
-                is Effect.Navigation.ToNote -> navController.navigateToNote(
-                    effect.folderId,
-                    effect.noteId
-                )
+                is Effect.Navigation.ToNote -> {
+                    Log.d("NAVIGATION", "TO NOTE ID = ${effect.noteId}")
+                    navController.navigateToNote(
+                        effect.folderId,
+                        effect.noteId
+                    )
+                }
+
                 Effect.Navigation.ToPrevious -> navController.popBackStack()
             }
         }

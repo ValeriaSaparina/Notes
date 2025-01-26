@@ -3,8 +3,8 @@ package com.example.notes.impl.repository
 import com.example.notes.api.datasource.LocalNotesDataSource
 import com.example.notes.api.model.NoteDomainModel
 import com.example.notes.api.repository.NotesRepository
-import com.example.notes.impl.mapper.toData
-import com.example.notes.impl.mapper.toDomain
+import com.example.notes.api.mapper.toData
+import com.example.notes.api.mapper.toDomain
 
 class NotesRepositoryImpl(
     private val localDataSource: LocalNotesDataSource

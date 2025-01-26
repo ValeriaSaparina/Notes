@@ -1,10 +1,11 @@
-package com.example.notes.impl.mapper
+package com.example.notes.api.mapper
 
+import android.util.Log
 import com.example.db.room.entity.NoteEntity
 import com.example.db.room.entity.NoteWithFolderEntity
 import com.example.notes.api.model.NoteDomainModel
 import com.example.notes.api.model.FolderModel
-import com.example.notes.impl.presentation.model.NoteItemUiModel
+import com.example.notes.api.model.NoteItemUiModel
 import com.example.utils.resource.TimeUtil
 
 //fun NoteEntity.toDomain(): NoteDomainModel =
@@ -18,6 +19,7 @@ import com.example.utils.resource.TimeUtil
 //    )
 
 fun NoteWithFolderEntity.toDomain(): NoteDomainModel {
+    Log.d("GET NOTE", "WITH FOLDER: ${this}")
     return NoteDomainModel(
         id = note.id,
         title = note.title,

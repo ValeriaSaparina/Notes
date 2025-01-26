@@ -3,4 +3,5 @@
     <string name="local_name_folder">Local folders</string>
     <string name="remote_name_folder">Remote folders</string>
     <string name="something_went_wrong">Something went wrong</string>
+    <string name="new_note">New note</string>
 </resources>

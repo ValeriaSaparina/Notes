@@ -46,7 +46,6 @@ abstract class BaseViewModel<Event : ViewEvent, UiState : ViewState, Effect : Vi
     }
 
     fun setEvent(event: Event) {
-        Log.d("AAAAAAAAAAAA", "SET EVENT $event")
         viewModelScope.launch {
             _event.emit(event)
         }

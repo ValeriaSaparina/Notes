@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Update
 import com.example.db.room.entity.NoteEntity
 import com.example.db.room.entity.NoteWithFolderEntity
 
@@ -20,4 +21,7 @@ interface NotesDao {
 
     @Insert
     fun createNote(note: NoteEntity): Long
+
+    @Update
+    fun updateNote(note: NoteEntity)
 }

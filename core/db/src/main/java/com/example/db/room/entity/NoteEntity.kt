@@ -24,7 +24,18 @@ data class NoteEntity(
     @ColumnInfo(name = "create_date") val createDate: Long,
     @ColumnInfo(name = "edit_date") val editDate: Long,
     @ColumnInfo(name = "folder_id") val folderId: Long
-)
+) {
+    companion object {
+        fun getEmpty() = NoteEntity(
+            id = 0,
+            title = "",
+            text = "",
+            createDate = 0,
+            editDate = 0,
+            folderId = 0
+        )
+    }
+}
 
 data class NoteWithFolderEntity(
     @Embedded val note: NoteEntity,

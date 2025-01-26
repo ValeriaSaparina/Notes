@@ -3,8 +3,8 @@ package com.example.utils.resource
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
-import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 import java.time.format.FormatStyle
 import java.util.Locale
 
@@ -25,7 +25,7 @@ object TimeUtil {
         val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
             .withLocale(Locale.getDefault())
         val systemZone = ZoneId.systemDefault()
-        val localDateTime = LocalDateTime.parse(input, formatter)
+        val localDateTime = try { LocalDateTime.parse(input, formatter) } catch (e : DateTimeParseException) {LocalDateTime.now()}
         val zonedDateTime = localDateTime.atZone(systemZone)
         return zonedDateTime.toInstant().toEpochMilli()
     }

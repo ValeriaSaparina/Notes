@@ -49,6 +49,7 @@ dependencies {
     implementation(project(":feature:folders:impl"))
     implementation(project(":core:utils"))
     implementation(project(":feature:notes:impl"))
+    implementation(project(":feature:note:impl"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

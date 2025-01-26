@@ -67,7 +67,6 @@ class FoldersViewModel(
                             isError = false
                         )
                     }
-//                    setState { copy(isLoading = false, isError = false) }
                     setEffect { Effect.FolderWasCreated }
                 }
                 .onFailure { thr ->

@@ -1,6 +1,5 @@
 package com.example.feature.folders.impl.usecase
 
-import com.example.common.SectionItem
 import com.example.feature.folders.api.model.FoldersListModel
 import com.example.feature.folders.api.repository.FoldersRepository
 import com.example.feature.folders.api.usecase.GetAllFoldersUseCase

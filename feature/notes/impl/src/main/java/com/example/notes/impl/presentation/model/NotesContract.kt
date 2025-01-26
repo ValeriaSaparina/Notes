@@ -3,6 +3,7 @@ package com.example.notes.impl.presentation.model
 import com.example.designsystem.ViewEvent
 import com.example.designsystem.ViewSideEffect
 import com.example.designsystem.ViewState
+import com.example.notes.api.model.NoteItemUiModel
 
 class NotesContract {
 
@@ -13,7 +14,6 @@ class NotesContract {
         data object OnBackClicked : Event()
         data class OnCreateNewNoteClicked(
             val note: NoteItemUiModel,
-            val folderId: Long,
             val isSync: Boolean
         ) : Event()
         data class OnNoteClicked(val folderId: Long, val noteId: Long) : Event()

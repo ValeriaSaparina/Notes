@@ -2,6 +2,7 @@ package com.example.notes.impl.presentation.ui.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -23,32 +24,40 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.R
-import com.example.notes.impl.presentation.model.NoteItemUiModel
+import com.example.notes.api.model.NoteItemUiModel
 
 @Composable
-fun NoteItem(modifier: Modifier = Modifier, data: NoteItemUiModel, isDivider: Boolean = false) {
+fun NoteItem(
+    modifier: Modifier = Modifier,
+    note: NoteItemUiModel,
+    isDivider: Boolean = false,
+    onItemClick: (Long, Long) -> Unit
+) {
     Column {
         Column(
             modifier = modifier
                 .fillMaxWidth()
                 .height(IntrinsicSize.Max)
                 .background(Color.White)
-                .padding(vertical = 4.dp, horizontal = 16.dp),
+                .padding(vertical = 12.dp, horizontal = 16.dp)
+                .clickable {
+                    onItemClick(note.id, note.folder.id)
+                },
         ) {
             Text(
-                text = data.title,
+                text = note.title,
                 maxLines = 1,
                 fontWeight = FontWeight.Bold,
                 fontSize = com.example.designsystem.Typography.bodyLarge.fontSize
             )
             Row {
                 Text(
-                    text = data.createDate,
+                    text = note.createDate,
                     fontSize = com.example.designsystem.Typography.bodySmall.fontSize
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = data.text,
+                    text = note.text,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     fontSize = com.example.designsystem.Typography.bodySmall.fontSize
@@ -58,10 +67,13 @@ fun NoteItem(modifier: Modifier = Modifier, data: NoteItemUiModel, isDivider: Bo
                 modifier = Modifier.height(IntrinsicSize.Max),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Image(painter = painterResource(R.drawable.outline_folder_24), contentDescription = null)
+                Image(
+                    painter = painterResource(R.drawable.outline_folder_24),
+                    contentDescription = null
+                )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = data.folder.name,
+                    text = note.folder.name,
                     fontSize = com.example.designsystem.Typography.bodySmall.fontSize,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -82,7 +94,7 @@ fun NoteItem(modifier: Modifier = Modifier, data: NoteItemUiModel, isDivider: Bo
 @Preview(showBackground = true)
 @Composable
 fun NoteItemPreview() {
-    NoteItem(data = NoteItemUiModel.getDefault())
+    NoteItem(note = NoteItemUiModel.getDefault(), onItemClick = ::func)
 }
 
 @Preview(showBackground = true)
@@ -98,7 +110,9 @@ fun NoteItemListPreview() {
         itemsIndexed(
             list
         ) { index, data ->
-            NoteItem(data = data, isDivider = list.lastIndex != index)
+            NoteItem(note = data, isDivider = list.lastIndex != index, onItemClick = ::func)
         }
     }
 }
+
+private fun func(id1: Long, id2: Long) {}

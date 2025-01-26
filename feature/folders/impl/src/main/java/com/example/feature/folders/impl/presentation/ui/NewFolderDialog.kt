@@ -64,7 +64,7 @@ fun NewFolderDialog(onDismissRequest: () -> Unit, onSaveRequest: (String) -> Uni
                 color = yellowAccent,
                 modifier = Modifier.clickable {
                     scope.launch { sheetState.hide() }.invokeOnCompletion {
-                        Log.d(FOLDER_SCREEN_TAG, "cancel")
+                        Log.d("FOLDER_DIALOG", "cancel")
                         if (!sheetState.isVisible) {
                             onDismissRequest()
                         }

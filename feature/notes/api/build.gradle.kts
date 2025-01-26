@@ -39,6 +39,8 @@ dependencies {
     implementation(libs.material)
     implementation(project(":core:db"))
     implementation(project(":feature:folders:api"))
+    implementation(project(":core:common"))
+    implementation(project(":core:utils"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
