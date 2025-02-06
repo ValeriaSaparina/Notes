@@ -10,11 +10,26 @@ data class NoteItemUiModel(
     companion object {
         fun getDefault() =
             NoteItemUiModel(
-                id = "eleifend",
-                title = "Title",
-                text = "TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText",
-                dateOfEditing = "05.12.2024",
-                nameFolder = "Notes"
+                id = "",
+                title = "",
+                text = "",
+                dateOfEditing = "",
+                nameFolder = ""
+            )
+
+        fun getDefaultList() =
+            listOf(
+                getDefault().copy(id = "1"),
+                getDefault().copy(id = "19"),
+                getDefault().copy(id = "12"),
+                getDefault().copy(id = "13"),
+                getDefault().copy(id = "14"),
+                getDefault().copy(id = "15"),
+                getDefault().copy(id = "17"),
+                getDefault().copy(id = "16"),
+                getDefault().copy(id = "18"),
+                getDefault().copy(id = "9"),
+                getDefault().copy(id = "10"),
             )
     }
 }

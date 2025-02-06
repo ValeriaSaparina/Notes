@@ -1,3 +1,24 @@
 package com.example.notes.ui.base.data
 
-data class SectionData(val headerText: String, val items: List<SectionItem>)
+data class SectionData(val headerText: String, val items: MutableList<SectionItem>) {
+    companion object {
+        fun getDefaultList() = listOf(
+            SectionData(
+                "Folders",
+                items = mutableListOf(
+                    FolderItemUiModel.getDefault(),
+                    FolderItemUiModel.getDefault(),
+                    FolderItemUiModel.getDefault()
+                )
+            ),
+            SectionData(
+                "Tags",
+                items = mutableListOf(
+                    FolderItemUiModel.getDefault(),
+                    FolderItemUiModel.getDefault(),
+                    FolderItemUiModel.getDefault()
+                )
+            )
+        )
+    }
+}

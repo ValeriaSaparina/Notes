@@ -6,7 +6,7 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -15,24 +15,35 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.toMutableStateMap
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.notes.R
 import com.example.notes.ui.base.data.FolderItemUiModel
+import com.example.notes.ui.base.data.NoteItemUiModel
 import com.example.notes.ui.base.data.SectionData
 import com.example.notes.ui.base.utils.ExpandedListItem
 import com.example.notes.ui.base.utils.rememberSavableSnapshotStateMap
 
 @Composable
-fun ExpandableList(sectionDataData: List<SectionData>) {
+fun ExpandableList(
+    modifier: Modifier = Modifier,
+    sectionData: List<SectionData>,
+    onItemClicked: (String) -> Unit
+) {
     val isExpandedMap = rememberSavableSnapshotStateMap {
-        List(sectionDataData.size) { index: Int -> index to true }.toMutableStateMap()
+        List(sectionData.size) { index: Int -> index to true }.toMutableStateMap()
     }
 
     LazyColumn(
-        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+        modifier = modifier
     ) {
-        sectionDataData.onEachIndexed { index, sectionData ->
-            this.section(sectionData = sectionData, isExpanded = isExpandedMap[index] ?: true) {
+        sectionData.onEachIndexed { index, sectionData ->
+            this.section(
+                sectionData = sectionData,
+                isExpanded = isExpandedMap[index] ?: true,
+                onItemClicked = onItemClicked
+            ) {
                 isExpandedMap[index] = !(isExpandedMap[index] ?: true)
             }
         }
@@ -43,6 +54,7 @@ fun ExpandableList(sectionDataData: List<SectionData>) {
 fun LazyListScope.section(
     sectionData: SectionData,
     isExpanded: Boolean,
+    onItemClicked: (String) -> Unit,
     onHeaderClick: () -> Unit
 ) {
     item {
@@ -65,7 +77,16 @@ fun LazyListScope.section(
             else -> {
                 Modifier
             }
+        }.clickable {
+            onItemClicked(
+                when (item) {
+                    is FolderItemUiModel -> item.id
+                    is NoteItemUiModel -> item.id
+                    else -> "-1"
+                }
+            )
         }
+
         AnimatedVisibility(
             visible = isExpanded,
             enter = fadeIn(animationSpec = tween(ANIMATION_DURATION)) + expandVertically(
@@ -88,10 +109,10 @@ fun LazyListScope.section(
 @Composable
 fun ExpandableListPreview() {
     ExpandableList(
-        listOf(
+        sectionData = listOf(
             SectionData(
-                "Remote",
-                items = listOf(
+                stringResource(id = R.string.local_name_folder),
+                items = mutableListOf(
                     FolderItemUiModel.getDefault(),
                     FolderItemUiModel.getDefault(),
                     FolderItemUiModel.getDefault()
@@ -99,14 +120,14 @@ fun ExpandableListPreview() {
             ),
             SectionData(
                 "Tags",
-                items = listOf(
+                items = mutableListOf(
                     FolderItemUiModel.getDefault(),
                     FolderItemUiModel.getDefault(),
                     FolderItemUiModel.getDefault()
                 )
             )
         )
-    )
+    ) {}
 }
 
 private const val ANIMATION_DURATION = 500

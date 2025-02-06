@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.example.notes.R
 import com.example.notes.ui.base.data.NoteItemUiModel
 import com.example.notes.ui.base.utils.GetImage
-import com.example.notes.ui.theme.Typography
+import com.example.notes.ui.Typography
 
 @Composable
 fun NoteItem(modifier: Modifier = Modifier, data: NoteItemUiModel, isDivider: Boolean = false) {
@@ -39,16 +39,16 @@ fun NoteItem(modifier: Modifier = Modifier, data: NoteItemUiModel, isDivider: Bo
                 text = data.title,
                 maxLines = 1,
                 fontWeight = FontWeight.Bold,
-                fontSize = Typography.bodyLarge.fontSize
+//                fontSize = com.example.designsystem.Typography.bodyLarge.fontSize
             )
             Row {
-                Text(text = data.dateOfEditing, fontSize = Typography.bodySmall.fontSize)
+                Text(text = data.dateOfEditing,/* fontSize = bodySmall.fontSize*/)
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = data.text,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    fontSize = Typography.bodySmall.fontSize
+//                    fontSize = com.example.designsystem.Typography.bodySmall.fontSize
                 )
             }
             Row(
@@ -59,7 +59,7 @@ fun NoteItem(modifier: Modifier = Modifier, data: NoteItemUiModel, isDivider: Bo
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = data.nameFolder,
-                    fontSize = Typography.bodySmall.fontSize,
+//                    fontSize = com.example.designsystem.Typography.bodySmall.fontSize,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )

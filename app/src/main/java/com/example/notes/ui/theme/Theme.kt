@@ -15,6 +15,13 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import com.example.notes.ui.Pink80
+import com.example.notes.ui.Purple80
+import com.example.notes.ui.PurpleGrey80
+import com.example.notes.ui.Typography
+import com.example.notes.ui.grey
+import com.example.notes.ui.white
+import com.example.notes.ui.yellowAccent
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,

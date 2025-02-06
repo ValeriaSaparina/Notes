@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -40,7 +41,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.2"
     }
     packaging {
         resources {
@@ -51,14 +52,31 @@ android {
 
 dependencies {
 
+//    implementation(libs.compose.markdown)
+    implementation(libs.colintheshots.twain)
+
+    implementation(libs.koin)
+    implementation(libs.koin.compose)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+
+    implementation(libs.bundles.compose)
+    implementation(project(":core:designsystem"))
+    implementation(project(":core:navigation"))
+    implementation(project(":feature:folders:impl"))
+    implementation(project(":core:db"))
+    implementation(project(":feature:notes:impl"))
+    implementation(project(":feature:note:impl"))
+    implementation(project(":feature:auth:impl"))
+    implementation(project(":feature:auth:impl"))
+
+//    implementation(project(":feature:folders:impl"))
+//    implementation(project(":core:db"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

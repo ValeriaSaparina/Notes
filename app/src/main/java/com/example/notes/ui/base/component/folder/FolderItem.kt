@@ -24,6 +24,7 @@ import com.example.notes.R
 import com.example.notes.ui.base.data.FolderItemUiModel
 import com.example.notes.ui.theme.NotesTheme
 
+
 @Composable
 fun FolderItem(modifier: Modifier = Modifier, data: FolderItemUiModel, isDivider: Boolean = false) {
     Column {
@@ -48,7 +49,7 @@ fun FolderItem(modifier: Modifier = Modifier, data: FolderItemUiModel, isDivider
                 textAlign = TextAlign.Start,
                 text = data.name
             )
-            Text(text = data.notesNumber)
+            Text(text = data.notesNumber.toString())
             Image(
                 painter = painterResource(id = R.drawable.outline_keyboard_arrow_right_24),
                 contentDescription = "",

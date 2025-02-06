@@ -49,7 +49,7 @@ fun HeaderItemExpandedPreview() {
     SectionHeader(
         SectionData(
             "Expanded",
-            items = listOf(FolderItemUiModel.getDefault(), FolderItemUiModel.getDefault())
+            items = mutableListOf(FolderItemUiModel.getDefault(), FolderItemUiModel.getDefault())
         ), true
     ) {}
 }
@@ -60,7 +60,7 @@ fun HeaderItemCollapsedPreview() {
     SectionHeader(
         SectionData(
             "Collapsed",
-            items = listOf(FolderItemUiModel.getDefault(), FolderItemUiModel.getDefault())
+            items = mutableListOf(FolderItemUiModel.getDefault(), FolderItemUiModel.getDefault())
         ), false
     ) {}
 }
