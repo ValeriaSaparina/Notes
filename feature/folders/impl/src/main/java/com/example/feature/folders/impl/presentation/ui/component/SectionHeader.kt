@@ -16,11 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.R
 import com.example.designsystem.SectionData
-import com.example.feature.folders.impl.presentation.model.FolderUiModel
 
 @Composable
 fun SectionHeader(sectionData: SectionData, isExpanded: Boolean, onHeaderClick: () -> Unit) {
@@ -49,24 +47,24 @@ fun SectionHeader(sectionData: SectionData, isExpanded: Boolean, onHeaderClick: 
 
 }
 
-@Preview(showBackground = true)
-@Composable
-fun HeaderItemExpandedPreview() {
-    SectionHeader(
-        SectionData(
-            R.string.local_name_folder,
-            items = mutableListOf(FolderUiModel.getDefault(), FolderUiModel.getDefault())
-        ), true
-    ) {}
-}
-
-@Preview(showBackground = true)
-@Composable
-fun HeaderItemCollapsedPreview() {
-    SectionHeader(
-        SectionData(
-            R.string.local_name_folder,
-            items = mutableListOf(FolderUiModel.getDefault(), FolderUiModel.getDefault())
-        ), false
-    ) {}
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun HeaderItemExpandedPreview() {
+//    SectionHeader(
+//        SectionData(
+//            R.string.local_name_folder,
+//            items = mutableListOf(FolderUiModel.getDefault(), FolderUiModel.getDefault())
+//        ), true
+//    ) {}
+//}
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun HeaderItemCollapsedPreview() {
+//    SectionHeader(
+//        SectionData(
+//            R.string.local_name_folder,
+//            items = mutableListOf(FolderUiModel.getDefault(), FolderUiModel.getDefault())
+//        ), false
+//    ) {}
+//}

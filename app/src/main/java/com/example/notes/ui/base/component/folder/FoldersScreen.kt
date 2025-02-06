@@ -23,7 +23,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.notes.R
 import com.example.notes.ui.base.component.common.NetworkError
@@ -32,7 +31,6 @@ import com.example.notes.ui.base.component.folder.FoldersContract.Effect
 import com.example.notes.ui.base.component.folder.FoldersContract.Event
 import com.example.notes.ui.base.component.folder.FoldersContract.UiState
 import com.example.notes.ui.base.utils.SIDE_EFFECTS_KEY
-import com.example.notes.ui.theme.NotesTheme
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
@@ -42,7 +40,7 @@ fun FoldersScreen(
     state: UiState,
     effectFlow: Flow<Effect>?,
     onEventSent: (event: Event) -> Unit,
-    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit
+    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit,
 ) {
 
     Scaffold(
@@ -109,12 +107,12 @@ fun FoldersScreen(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun FoldersScreenPreview() {
-    NotesTheme {
-//        FoldersScreen(sectionData = SectionData.getDefaultList())
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun FoldersScreenPreview() {
+//    NotesTheme {
+////        FoldersScreen(sectionData = SectionData.getDefaultList())
+//    }
+//}
 
 const val FOLDER_SCREEN_TAG = "FolderScreenTag"

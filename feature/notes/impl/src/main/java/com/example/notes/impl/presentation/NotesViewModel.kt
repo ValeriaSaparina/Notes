@@ -3,11 +3,11 @@ package com.example.notes.impl.presentation
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.designsystem.BaseViewModel
+import com.example.notes.api.mapper.toDomain
+import com.example.notes.api.mapper.toUi
 import com.example.notes.api.model.NoteItemUiModel
 import com.example.notes.api.usecase.CreateNoteUseCase
 import com.example.notes.api.usecase.GetNotesByFolderIdUseCase
-import com.example.notes.api.mapper.toDomain
-import com.example.notes.api.mapper.toUi
 import com.example.notes.impl.presentation.model.NotesContract.Effect
 import com.example.notes.impl.presentation.model.NotesContract.Event
 import com.example.notes.impl.presentation.model.NotesContract.UiState
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 class NotesViewModel(
     private val getNotesByFolderIdUseCase: GetNotesByFolderIdUseCase,
     private val createNoteUseCase: CreateNoteUseCase,
-    private val folderId: Long
+    private val folderId: Long,
 ) :
     BaseViewModel<Event, UiState, Effect>() {
 
@@ -52,7 +52,7 @@ class NotesViewModel(
 
     private fun createNewNote(
         note: NoteItemUiModel,
-        isSync: Boolean = false /* TODO: isSync */
+        isSync: Boolean = false, /* TODO: isSync */
     ) {
         viewModelScope.launch {
             val currentTime = TimeUtil.currentTimeUtc()

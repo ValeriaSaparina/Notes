@@ -25,7 +25,11 @@ object TimeUtil {
         val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
             .withLocale(Locale.getDefault())
         val systemZone = ZoneId.systemDefault()
-        val localDateTime = try { LocalDateTime.parse(input, formatter) } catch (e : DateTimeParseException) {LocalDateTime.now()}
+        val localDateTime = try {
+            LocalDateTime.parse(input, formatter)
+        } catch (e: DateTimeParseException) {
+            LocalDateTime.now()
+        }
         val zonedDateTime = localDateTime.atZone(systemZone)
         return zonedDateTime.toInstant().toEpochMilli()
     }

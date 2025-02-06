@@ -13,10 +13,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.notes.R
-import com.example.notes.ui.base.data.FolderItemUiModel
 import com.example.notes.ui.base.data.SectionData
 import com.example.notes.ui.base.utils.GetImage
 
@@ -38,29 +36,32 @@ fun SectionHeader(sectionData: SectionData, isExpanded: Boolean, onHeaderClick: 
             text = sectionData.headerText,
         )
         val rotate = if (isExpanded) 90F else 0F
-        GetImage(id = R.drawable.outline_keyboard_arrow_right_24, modifier = Modifier.rotate(rotate))
+        GetImage(
+            id = R.drawable.outline_keyboard_arrow_right_24,
+            modifier = Modifier.rotate(rotate)
+        )
     }
 
 }
-
-@Preview(showBackground = true)
-@Composable
-fun HeaderItemExpandedPreview() {
-    SectionHeader(
-        SectionData(
-            "Expanded",
-            items = mutableListOf(FolderItemUiModel.getDefault(), FolderItemUiModel.getDefault())
-        ), true
-    ) {}
-}
-
-@Preview(showBackground = true)
-@Composable
-fun HeaderItemCollapsedPreview() {
-    SectionHeader(
-        SectionData(
-            "Collapsed",
-            items = mutableListOf(FolderItemUiModel.getDefault(), FolderItemUiModel.getDefault())
-        ), false
-    ) {}
-}
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun HeaderItemExpandedPreview() {
+//    SectionHeader(
+//        SectionData(
+//            "Expanded",
+//            items = mutableListOf(FolderItemUiModel.getDefault(), FolderItemUiModel.getDefault())
+//        ), true
+//    ) {}
+//}
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun HeaderItemCollapsedPreview() {
+//    SectionHeader(
+//        SectionData(
+//            "Collapsed",
+//            items = mutableListOf(FolderItemUiModel.getDefault(), FolderItemUiModel.getDefault())
+//        ), false
+//    ) {}
+//}

@@ -9,7 +9,8 @@ import androidx.room.Relation
 import kotlinx.serialization.Serializable
 
 @Serializable
-@Entity(tableName = "notes",
+@Entity(
+    tableName = "notes",
     foreignKeys = [ForeignKey(
         entity = FolderEntity::class,
         parentColumns = ["id"],
@@ -23,7 +24,7 @@ data class NoteEntity(
     val text: String,
     @ColumnInfo(name = "create_date") val createDate: Long,
     @ColumnInfo(name = "edit_date") val editDate: Long,
-    @ColumnInfo(name = "folder_id") val folderId: Long
+    @ColumnInfo(name = "folder_id") val folderId: Long,
 ) {
     companion object {
         fun getEmpty() = NoteEntity(
@@ -43,5 +44,5 @@ data class NoteWithFolderEntity(
         parentColumn = "folder_id",
         entityColumn = "id"
     )
-    val folder: FolderEntity
+    val folder: FolderEntity,
 )

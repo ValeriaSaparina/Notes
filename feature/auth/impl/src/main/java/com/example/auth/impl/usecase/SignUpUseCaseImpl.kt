@@ -1,8 +1,8 @@
 package com.example.auth.impl.usecase
 
-import com.example.db.room.entity.UserEntity
 import com.example.auth.api.repository.UserRepository
 import com.example.auth.api.usecase.SignUpUseCase
+import com.example.db.room.entity.UserEntity
 import com.example.utils.extention.runSuspendCatching
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +15,7 @@ class SignUpUseCaseImpl(
     override suspend fun invoke(
         email: String,
         name: String,
-        password: String
+        password: String,
     ): Result<UserEntity> {
         return runSuspendCatching {
             withContext(dispatcher) {

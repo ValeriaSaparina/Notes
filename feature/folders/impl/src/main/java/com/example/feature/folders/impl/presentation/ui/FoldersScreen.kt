@@ -4,7 +4,6 @@ package com.example.feature.folders.impl.presentation.ui
 
 import android.util.Log
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -27,12 +26,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.designsystem.SIDE_EFFECTS_KEY
 import com.example.designsystem.R
-import com.example.feature.folders.impl.presentation.model.FoldersContract.*
-import com.example.feature.folders.impl.presentation.ui.component.ExpandableList
-import com.example.designsystem.component.Progress
+import com.example.designsystem.SIDE_EFFECTS_KEY
 import com.example.designsystem.component.NetworkError
+import com.example.designsystem.component.Progress
+import com.example.feature.folders.impl.presentation.model.FoldersContract.Effect
+import com.example.feature.folders.impl.presentation.model.FoldersContract.Event
+import com.example.feature.folders.impl.presentation.model.FoldersContract.UiState
+import com.example.feature.folders.impl.presentation.ui.component.ExpandableList
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
@@ -42,7 +43,7 @@ fun FoldersScreen(
     state: UiState,
     effectFlow: Flow<Effect>?,
     onEventSent: (event: Event) -> Unit,
-    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit
+    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit,
 ) {
 
     Scaffold(
@@ -90,6 +91,7 @@ fun FoldersScreen(
                     Effect.DataWasLoaded -> {
                         Log.d(FOLDER_SCREEN_TAG, "data was loaded")
                     }
+
                     is Effect.Navigation.ToNewNote -> onNavigationRequested(effect)
                     is Effect.Navigation.ToNotes -> onNavigationRequested(effect)
                     Effect.FolderWasCreated -> Log.d(FOLDER_SCREEN_TAG, "folder was created")
@@ -118,11 +120,14 @@ fun FoldersScreen(
     }
 
 
-
 }
 
 @Composable
-private fun ShowData(paddingValue: PaddingValues, state: UiState, onEventSent: (event: Event) -> Unit) {
+private fun ShowData(
+    paddingValue: PaddingValues,
+    state: UiState,
+    onEventSent: (event: Event) -> Unit,
+) {
     ExpandableList(
         modifier = Modifier.padding(paddingValue),
         sectionData = state.sectionData,

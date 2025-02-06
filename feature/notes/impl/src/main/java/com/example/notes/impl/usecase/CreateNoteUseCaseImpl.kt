@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 
 class CreateNoteUseCaseImpl(
     private val repository: NotesRepository,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : CreateNoteUseCase {
     override suspend fun invoke(note: NoteDomainModel, isSync: Boolean): Result<Long> {
         return runSuspendCatching {

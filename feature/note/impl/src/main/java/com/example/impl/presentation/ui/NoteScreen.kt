@@ -2,18 +2,14 @@ package com.example.impl.presentation.ui
 
 import android.util.Log
 import androidx.activity.compose.BackHandler
-import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusRequester
@@ -42,7 +38,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 
 @OptIn(FlowPreview::class)
 @Composable
@@ -50,7 +45,7 @@ fun NoteScreen(
     state: UiState,
     effectFlow: Flow<Effect>?,
     onEventSent: (event: Event) -> Unit,
-    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit
+    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit,
 ) {
 
     val focusRequester = remember { FocusRequester() }
@@ -69,14 +64,14 @@ fun NoteScreen(
     }
 
     BackHandler {
-            onEventSent(
-                Event.SaveNote(
-                    state.note.copy(
-                        title = noteTitleFlow.value,
-                        text = noteTextFlow.value
-                    )
+        onEventSent(
+            Event.SaveNote(
+                state.note.copy(
+                    title = noteTitleFlow.value,
+                    text = noteTextFlow.value
                 )
             )
+        )
         onEventSent(Event.OnBackClicked)
     }
 

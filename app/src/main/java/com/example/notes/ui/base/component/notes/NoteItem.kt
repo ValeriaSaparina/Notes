@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,12 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.notes.R
 import com.example.notes.ui.base.data.NoteItemUiModel
 import com.example.notes.ui.base.utils.GetImage
-import com.example.notes.ui.Typography
 
 @Composable
 fun NoteItem(modifier: Modifier = Modifier, data: NoteItemUiModel, isDivider: Boolean = false) {
@@ -42,7 +38,7 @@ fun NoteItem(modifier: Modifier = Modifier, data: NoteItemUiModel, isDivider: Bo
 //                fontSize = com.example.designsystem.Typography.bodyLarge.fontSize
             )
             Row {
-                Text(text = data.dateOfEditing,/* fontSize = bodySmall.fontSize*/)
+                Text(text = data.dateOfEditing/* fontSize = bodySmall.fontSize*/)
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = data.text,
@@ -76,26 +72,26 @@ fun NoteItem(modifier: Modifier = Modifier, data: NoteItemUiModel, isDivider: Bo
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun NoteItemPreview() {
-    NoteItem(data = NoteItemUiModel.getDefault())
-}
-
-@Preview(showBackground = true)
-@Composable
-fun NoteItemListPreview() {
-    LazyColumn {
-        val list = listOf(
-            NoteItemUiModel.getDefault(),
-            NoteItemUiModel.getDefault(),
-            NoteItemUiModel.getDefault(),
-            NoteItemUiModel.getDefault()
-        )
-        itemsIndexed(
-            list
-        ) { index, data ->
-            NoteItem(data = data, isDivider = list.lastIndex != index)
-        }
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun NoteItemPreview() {
+//    NoteItem(data = NoteItemUiModel.getDefault())
+//}
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun NoteItemListPreview() {
+//    LazyColumn {
+//        val list = listOf(
+//            NoteItemUiModel.getDefault(),
+//            NoteItemUiModel.getDefault(),
+//            NoteItemUiModel.getDefault(),
+//            NoteItemUiModel.getDefault()
+//        )
+//        itemsIndexed(
+//            list
+//        ) { index, data ->
+//            NoteItem(data = data, isDivider = list.lastIndex != index)
+//        }
+//    }
+//}

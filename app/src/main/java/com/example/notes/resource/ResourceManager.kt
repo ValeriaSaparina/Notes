@@ -1,7 +1,5 @@
 package com.example.notes.resource
 
-import androidx.annotation.ColorInt
-import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 
 interface ResourceManager {

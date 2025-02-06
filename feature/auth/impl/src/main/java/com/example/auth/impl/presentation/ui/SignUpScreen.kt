@@ -19,13 +19,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.auth.impl.presentation.model.SignUpContract.Effect
 import com.example.auth.impl.presentation.model.SignUpContract.Event
 import com.example.auth.impl.presentation.model.SignUpContract.UiState
-import com.example.designsystem.NotesTheme
 import com.example.designsystem.SIDE_EFFECTS_KEY
 import com.example.designsystem.component.ErrorIconShow
 import com.example.designsystem.component.Progress
@@ -38,7 +36,7 @@ fun SignUpScreen(
     state: UiState,
     effectFlow: Flow<Effect>?,
     onEventSent: (event: Event) -> Unit,
-    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit
+    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit,
 ) {
     val name = remember {
         mutableStateOf("")
@@ -183,10 +181,10 @@ fun SignUpScreen(
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun SignUpPreview() {
-    NotesTheme {
-//        SignUpScreen()
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun SignUpPreview() {
+//    NotesTheme {
+////        SignUpScreen()
+//    }
+//}

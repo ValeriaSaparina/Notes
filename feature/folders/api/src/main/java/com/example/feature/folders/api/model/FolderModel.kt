@@ -5,7 +5,7 @@ import com.example.common.SectionItem
 data class FolderModel(
     val id: Long,
     val name: String,
-    val notes: Int = 0
+    val notes: Int = 0,
 ) : SectionItem {
     companion object {
         fun getDefault() = FolderModel(

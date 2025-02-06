@@ -6,6 +6,6 @@ interface SignUpUseCase {
     suspend operator fun invoke(
         email: String,
         name: String,
-        password: String
+        password: String,
     ): Result<UserEntity>
 }

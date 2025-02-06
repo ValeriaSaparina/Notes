@@ -14,8 +14,9 @@ class NotesContract {
         data object OnBackClicked : Event()
         data class OnCreateNewNoteClicked(
             val note: NoteItemUiModel,
-            val isSync: Boolean
+            val isSync: Boolean,
         ) : Event()
+
         data class OnNoteClicked(val folderId: Long, val noteId: Long) : Event()
     }
 

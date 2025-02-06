@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 
 class GetAllFoldersUseCaseImpl(
     private val repository: FoldersRepository,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : GetAllFoldersUseCase {
     override suspend fun invoke(): Result<List<FoldersListModel>> {
         return runSuspendCatching {

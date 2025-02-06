@@ -8,7 +8,7 @@ import com.example.feature.folders.api.repository.FoldersRepository
 import com.example.feature.folders.impl.mapper.toDomain
 
 class FoldersRepositoryImpl(
-    private val localDataSource: LocalFoldersDataSource
+    private val localDataSource: LocalFoldersDataSource,
 ) : FoldersRepository {
     override suspend fun getAllFolders(): List<FoldersListModel> {
         return listOf(

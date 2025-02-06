@@ -1,7 +1,6 @@
 package com.example.notes.ui.navigation
 
 import android.content.Context
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import androidx.navigation.NavType

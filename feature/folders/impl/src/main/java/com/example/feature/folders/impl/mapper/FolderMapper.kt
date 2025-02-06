@@ -1,13 +1,11 @@
 package com.example.feature.folders.impl.mapper
 
-import android.util.Log
 import com.example.db.room.entity.FolderEntity
 import com.example.db.room.model.FolderDataModel
 import com.example.designsystem.SectionData
 import com.example.feature.folders.api.model.FolderModel
 import com.example.feature.folders.api.model.FoldersListModel
 import com.example.feature.folders.impl.presentation.model.FolderUiModel
-import com.example.feature.folders.impl.presentation.ui.FOLDER_SCREEN_TAG
 
 fun FolderDataModel.toDomain(): FolderModel =
     FolderModel(

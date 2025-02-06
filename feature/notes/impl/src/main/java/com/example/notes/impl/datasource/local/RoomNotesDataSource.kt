@@ -6,7 +6,7 @@ import com.example.db.room.entity.NoteWithFolderEntity
 import com.example.notes.api.datasource.LocalNotesDataSource
 
 class RoomNotesDataSource(
-    private val notesDao: NotesDao
+    private val notesDao: NotesDao,
 ) : LocalNotesDataSource {
     override suspend fun getNotesByFolderId(folderId: Long): List<NoteWithFolderEntity> {
         return notesDao.getNotesByFolderId(folderId)

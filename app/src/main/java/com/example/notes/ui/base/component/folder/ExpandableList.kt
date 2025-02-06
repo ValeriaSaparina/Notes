@@ -15,10 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.toMutableStateMap
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.notes.R
 import com.example.notes.ui.base.data.FolderItemUiModel
 import com.example.notes.ui.base.data.NoteItemUiModel
 import com.example.notes.ui.base.data.SectionData
@@ -29,7 +26,7 @@ import com.example.notes.ui.base.utils.rememberSavableSnapshotStateMap
 fun ExpandableList(
     modifier: Modifier = Modifier,
     sectionData: List<SectionData>,
-    onItemClicked: (String) -> Unit
+    onItemClicked: (String) -> Unit,
 ) {
     val isExpandedMap = rememberSavableSnapshotStateMap {
         List(sectionData.size) { index: Int -> index to true }.toMutableStateMap()
@@ -55,7 +52,7 @@ fun LazyListScope.section(
     sectionData: SectionData,
     isExpanded: Boolean,
     onItemClicked: (String) -> Unit,
-    onHeaderClick: () -> Unit
+    onHeaderClick: () -> Unit,
 ) {
     item {
         SectionHeader(
@@ -105,29 +102,29 @@ fun LazyListScope.section(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun ExpandableListPreview() {
-    ExpandableList(
-        sectionData = listOf(
-            SectionData(
-                stringResource(id = R.string.local_name_folder),
-                items = mutableListOf(
-                    FolderItemUiModel.getDefault(),
-                    FolderItemUiModel.getDefault(),
-                    FolderItemUiModel.getDefault()
-                )
-            ),
-            SectionData(
-                "Tags",
-                items = mutableListOf(
-                    FolderItemUiModel.getDefault(),
-                    FolderItemUiModel.getDefault(),
-                    FolderItemUiModel.getDefault()
-                )
-            )
-        )
-    ) {}
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun ExpandableListPreview() {
+//    ExpandableList(
+//        sectionData = listOf(
+//            SectionData(
+//                stringResource(id = R.string.local_name_folder),
+//                items = mutableListOf(
+//                    FolderItemUiModel.getDefault(),
+//                    FolderItemUiModel.getDefault(),
+//                    FolderItemUiModel.getDefault()
+//                )
+//            ),
+//            SectionData(
+//                "Tags",
+//                items = mutableListOf(
+//                    FolderItemUiModel.getDefault(),
+//                    FolderItemUiModel.getDefault(),
+//                    FolderItemUiModel.getDefault()
+//                )
+//            )
+//        )
+//    ) {}
+//}
 
 private const val ANIMATION_DURATION = 500

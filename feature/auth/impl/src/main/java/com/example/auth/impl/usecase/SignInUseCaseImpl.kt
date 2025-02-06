@@ -1,8 +1,8 @@
 package com.example.auth.impl.usecase
 
-import com.example.db.room.entity.UserEntity
 import com.example.auth.api.repository.UserRepository
 import com.example.auth.api.usecase.SignInUseCase
+import com.example.db.room.entity.UserEntity
 import com.example.utils.extention.runSuspendCatching
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

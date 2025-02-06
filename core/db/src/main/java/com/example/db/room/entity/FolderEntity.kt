@@ -8,5 +8,5 @@ import kotlinx.serialization.Serializable
 @Entity(tableName = "folders")
 data class FolderEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
-    val name: String
+    val name: String,
 )

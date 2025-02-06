@@ -1,14 +1,14 @@
 package com.example.notes.impl.repository
 
 import com.example.notes.api.datasource.LocalNotesDataSource
-import com.example.notes.api.model.NoteDomainModel
-import com.example.notes.api.repository.NotesRepository
 import com.example.notes.api.mapper.toData
 import com.example.notes.api.mapper.toDomain
+import com.example.notes.api.model.NoteDomainModel
+import com.example.notes.api.repository.NotesRepository
 
 class NotesRepositoryImpl(
-    private val localDataSource: LocalNotesDataSource
-): NotesRepository {
+    private val localDataSource: LocalNotesDataSource,
+) : NotesRepository {
     override suspend fun getNotesByFolderId(folderId: Long): List<NoteDomainModel> {
         return localDataSource.getNotesByFolderId(folderId).toDomain()
     }

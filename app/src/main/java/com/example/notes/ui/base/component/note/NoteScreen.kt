@@ -11,17 +11,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.colintheshots.twain.MarkdownEditor
 import com.example.notes.ui.base.data.NoteItemUiModel
 
 @Composable
 fun NoteScreen(
     modifier: Modifier = Modifier,
     note: NoteItemUiModel,
-    onValueChange: (String) -> Unit = {}
+    onValueChange: (String) -> Unit = {},
 ) {
 
     Column(modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)) {
@@ -30,9 +28,11 @@ fun NoteScreen(
         }
         Text(text = note.title, fontWeight = FontWeight.Bold, fontSize = 24.sp)
         BasicTextField(
-            modifier = modifier.clickable {
+            modifier = modifier
+                .clickable {
 
-            }.fillMaxHeight(),
+                }
+                .fillMaxHeight(),
             value = textFieldValue.value, onValueChange = {
                 textFieldValue.value = it
             }
@@ -40,8 +40,8 @@ fun NoteScreen(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun NoteScreenPreview() {
-    NoteScreen(note = NoteItemUiModel.getDefault())
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun NoteScreenPreview() {
+//    NoteScreen(note = NoteItemUiModel.getDefault())
+//}

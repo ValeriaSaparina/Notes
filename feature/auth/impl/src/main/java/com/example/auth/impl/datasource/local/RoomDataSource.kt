@@ -1,11 +1,11 @@
 package com.example.auth.impl.datasource.local
 
 import com.example.auth.api.datasource.LocalDataSource
-import com.example.db.room.entity.UserEntity
 import com.example.db.room.dao.UserDao
+import com.example.db.room.entity.UserEntity
 
 class RoomDataSource(
-    private val userDao: UserDao
+    private val userDao: UserDao,
 ) : LocalDataSource {
     override suspend fun signIn(user: UserEntity) {
         userDao.createUser(user)

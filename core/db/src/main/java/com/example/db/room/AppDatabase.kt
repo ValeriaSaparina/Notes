@@ -2,12 +2,12 @@ package com.example.db.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.db.room.entity.UserEntity
 import com.example.db.room.dao.FoldersDao
 import com.example.db.room.dao.NotesDao
 import com.example.db.room.dao.UserDao
 import com.example.db.room.entity.FolderEntity
 import com.example.db.room.entity.NoteEntity
+import com.example.db.room.entity.UserEntity
 
 @Database(
     version = 1,

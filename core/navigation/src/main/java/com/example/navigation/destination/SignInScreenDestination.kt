@@ -15,7 +15,7 @@ fun SignInScreenDestination(navController: NavHostController) {
     SignInScreen(
         state = viewModel.viewState.value,
         effectFlow = viewModel.effect,
-        onEventSent = {event -> viewModel.setEvent(event) },
+        onEventSent = { event -> viewModel.setEvent(event) },
         onNavigationRequested = { effect ->
             when (effect) {
                 is Effect.Navigation.ToFolders -> {

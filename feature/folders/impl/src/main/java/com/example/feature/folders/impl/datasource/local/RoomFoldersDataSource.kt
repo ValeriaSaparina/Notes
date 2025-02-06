@@ -10,11 +10,11 @@ class RoomFoldersDataSource(private val foldersDao: FoldersDao) : LocalFoldersDa
         return foldersDao.getAllLocalFolders()
     }
 
-    override suspend fun getLocalFolderById(id: String): FolderDataModel{
+    override suspend fun getLocalFolderById(id: String): FolderDataModel {
         return foldersDao.getLocalFolderById(id)
     }
 
-    override suspend fun createFolder(folderName: String) : Long {
+    override suspend fun createFolder(folderName: String): Long {
         return foldersDao.createLocalFolder(FolderEntity(name = folderName))
     }
 

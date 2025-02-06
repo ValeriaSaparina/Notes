@@ -11,9 +11,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import com.example.notes.ui.base.component.common.NetworkError
 import com.example.notes.ui.base.component.common.Progress
-import com.example.notes.ui.base.component.folder.FOLDER_SCREEN_TAG
-import com.example.notes.ui.base.component.folder.FoldersContract
-import com.example.notes.ui.base.component.notes.NotesContract.*
+import com.example.notes.ui.base.component.notes.NotesContract.Effect
+import com.example.notes.ui.base.component.notes.NotesContract.Event
+import com.example.notes.ui.base.component.notes.NotesContract.UiState
 import com.example.notes.ui.base.data.NoteItemUiModel
 import com.example.notes.ui.base.utils.SIDE_EFFECTS_KEY
 import kotlinx.coroutines.flow.Flow
@@ -25,7 +25,7 @@ fun NotesScreen(
     state: UiState,
     effectFlow: Flow<Effect>?,
     onEventSent: (event: Event) -> Unit,
-    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit
+    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit,
 ) {
 
     Scaffold(
@@ -38,6 +38,7 @@ fun NotesScreen(
             state.isError -> {
                 NetworkError { onEventSent(Event.Retry) }
             }
+
             else -> NotesContent(paddingValues, state.notesList)
         }
 
@@ -58,7 +59,7 @@ fun NotesScreen(
 @Composable
 fun NotesContent(paddingValues: PaddingValues, notes: List<NoteItemUiModel>) {
     LazyColumn(modifier = Modifier.padding(paddingValues)) {
-        itemsIndexed(items = notes, key = {_, note -> note.id}) { index, note ->
+        itemsIndexed(items = notes, key = { _, note -> note.id }) { index, note ->
             NoteItem(data = note, isDivider = notes.lastIndex != index)
         }
     }

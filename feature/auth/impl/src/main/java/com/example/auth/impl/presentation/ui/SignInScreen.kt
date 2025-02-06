@@ -19,13 +19,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.auth.impl.presentation.model.SignInContract.Effect
 import com.example.auth.impl.presentation.model.SignInContract.Event
 import com.example.auth.impl.presentation.model.SignInContract.UiState
-import com.example.designsystem.NotesTheme
 import com.example.designsystem.SIDE_EFFECTS_KEY
 import com.example.designsystem.component.Progress
 import kotlinx.coroutines.flow.Flow
@@ -53,9 +51,11 @@ fun SignInScreen(
         state.isError -> {
             Toast.makeText(LocalContext.current, "Something went wrong", Toast.LENGTH_LONG).show()
         }
+
         state.wrongCredentials -> {
             Toast.makeText(LocalContext.current, "Credentials are wrong", Toast.LENGTH_LONG).show()
         }
+
         else -> {
 
             Column(
@@ -125,10 +125,10 @@ fun SignInScreen(
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun SignInPreview() {
-    NotesTheme {
-//        SignInScreen()
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun SignInPreview() {
+//    NotesTheme {
+////        SignInScreen()
+//    }
+//}

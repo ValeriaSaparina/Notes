@@ -18,7 +18,7 @@ class SignUpContract {
         val isWrongName: Boolean,
         val isWrongPassword: Boolean,
         val isLoading: Boolean,
-        val isError: Boolean
+        val isError: Boolean,
     ) : ViewState
 
     sealed class Effect : ViewSideEffect {

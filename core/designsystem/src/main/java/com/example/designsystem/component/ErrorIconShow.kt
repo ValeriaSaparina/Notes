@@ -7,7 +7,7 @@ import androidx.compose.ui.res.painterResource
 import com.example.designsystem.R
 
 @Composable
-fun ErrorIconShow(isError : Boolean) {
+fun ErrorIconShow(isError: Boolean) {
     if (isError) {
         Icon(
             painter = painterResource(R.drawable.baseline_error_outline_24),

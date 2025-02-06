@@ -3,7 +3,8 @@ package com.example.notes.ui.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
-import com.example.notes.ui.base.component.notes.NotesContract.*
+import com.example.notes.ui.base.component.notes.NotesContract.Effect
+import com.example.notes.ui.base.component.notes.NotesContract.Event
 import com.example.notes.ui.base.component.notes.NotesScreen
 import com.example.notes.ui.base.component.notes.NotesViewModel
 

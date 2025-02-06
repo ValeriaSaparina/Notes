@@ -6,7 +6,7 @@ interface UserRepository {
     suspend fun signUp(
         email: String,
         name: String,
-        password: String
+        password: String,
     ): UserEntity
 
     suspend fun signIn(email: String, password: String): UserEntity

@@ -9,7 +9,7 @@ import kotlinx.coroutines.withContext
 
 class CreateFolderUseCaseImpl(
     private val repository: FoldersRepository,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : CreateFolderUseCase {
     override suspend fun invoke(folderName: String): Result<Long> {
         return runSuspendCatching {
