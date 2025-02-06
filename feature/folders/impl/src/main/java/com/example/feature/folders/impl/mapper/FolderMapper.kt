@@ -38,7 +38,6 @@ fun List<FolderModel>.toData(): List<FolderDataModel> = map { it.toData() }
 fun List<FoldersListModel>.toUi(): List<SectionData> = map { it.toUi() }
 
 private fun FoldersListModel.toUi(): SectionData {
-    Log.d(FOLDER_SCREEN_TAG, "${folders[0]}")
     return SectionData(
         headerId = title, items = folders.map { it.toUi() }.toMutableList()
     )

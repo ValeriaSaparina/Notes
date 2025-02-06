@@ -67,9 +67,6 @@ fun NoteScreen(
     val noteTextFlow = remember {
         MutableStateFlow(noteText.value)
     }
-    val onBackPressedDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
-    var backPressHandled by remember { mutableStateOf(false) }
-    val saveCoroutineScope = rememberCoroutineScope()
 
     BackHandler {
             onEventSent(

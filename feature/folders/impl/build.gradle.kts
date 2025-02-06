@@ -50,7 +50,8 @@ dependencies {
     implementation(project(":core:utils"))
     implementation(project(":core:db"))
     implementation(project(":core:designsystem"))
-    testImplementation(libs.junit)
+
+    testImplementation(libs.bundles.tests)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

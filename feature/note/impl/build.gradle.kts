@@ -52,7 +52,7 @@ dependencies {
     implementation(project(":core:utils"))
     implementation(project(":core:db"))
 
-    testImplementation(libs.junit)
+    testImplementation(libs.bundles.tests)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

@@ -15,7 +15,6 @@ class GetNotesByFolderIdUseCaseImpl(
 ): GetNotesByFolderIdUseCase {
     override suspend fun invoke(folderId: Long): Result<List<NoteDomainModel>> {
         return runSuspendCatching {
-            Log.d("NOTES_SCREEN_TAG", "IN INVOKE() GET")
             withContext(dispatcher) {
                 repository.getNotesByFolderId(folderId)
             }
