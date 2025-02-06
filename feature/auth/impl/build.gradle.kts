@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.navigation"
+    namespace = "com.example.impl"
     compileSdk = 34
 
     defaultConfig {
@@ -42,16 +42,15 @@ android {
 
 dependencies {
 
+    implementation(libs.bundles.firebase)
     implementation(libs.bundles.koin)
 
+    implementation(project(":feature:auth:api"))
     implementation(project(":core:designsystem"))
     implementation(project(":core:utils"))
-    implementation(project(":feature:auth:impl"))
-    implementation(project(":feature:folders:impl"))
-    implementation(project(":feature:notes:impl"))
-    implementation(project(":feature:note:impl"))
+    implementation(project(":core:db"))
 
-    testImplementation(libs.junit)
+    testImplementation(libs.bundles.tests)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

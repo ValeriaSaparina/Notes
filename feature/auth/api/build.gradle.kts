@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.navigation"
+    namespace = "com.example.auth.api"
     compileSdk = 34
 
     defaultConfig {
@@ -23,14 +23,6 @@ android {
             )
         }
     }
-
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.2"
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -42,15 +34,10 @@ android {
 
 dependencies {
 
-    implementation(libs.bundles.koin)
-
-    implementation(project(":core:designsystem"))
-    implementation(project(":core:utils"))
-    implementation(project(":feature:auth:impl"))
-    implementation(project(":feature:folders:impl"))
-    implementation(project(":feature:notes:impl"))
-    implementation(project(":feature:note:impl"))
-
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(project(":core:db"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
