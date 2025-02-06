@@ -19,10 +19,8 @@ import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.runtime.toMutableStateMap
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.common.SectionItem
-import com.example.designsystem.R
 import com.example.designsystem.SectionData
 import com.example.feature.folders.impl.presentation.model.FolderUiModel
 
@@ -105,30 +103,30 @@ fun LazyListScope.section(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun ExpandableListPreview() {
-    ExpandableList(
-        sectionData = listOf(
-            SectionData(
-                headerId = R.string.local_name_folder,
-                items = mutableListOf(
-                    FolderUiModel.getDefault(),
-                    FolderUiModel.getDefault(),
-                    FolderUiModel.getDefault()
-                )
-            ),
-            SectionData(
-                R.string.local_name_folder,
-                items = mutableListOf(
-                    FolderUiModel.getDefault(),
-                    FolderUiModel.getDefault(),
-                    FolderUiModel.getDefault()
-                )
-            )
-        )
-    ) {}
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun ExpandableListPreview() {
+//    ExpandableList(
+//        sectionData = listOf(
+//            SectionData(
+//                headerId = R.string.local_name_folder,
+//                items = mutableListOf(
+//                    FolderUiModel.getDefault(),
+//                    FolderUiModel.getDefault(),
+//                    FolderUiModel.getDefault()
+//                )
+//            ),
+//            SectionData(
+//                R.string.local_name_folder,
+//                items = mutableListOf(
+//                    FolderUiModel.getDefault(),
+//                    FolderUiModel.getDefault(),
+//                    FolderUiModel.getDefault()
+//                )
+//            )
+//        )
+//    ) {}
+//}
 
 private const val ANIMATION_DURATION = 500
 

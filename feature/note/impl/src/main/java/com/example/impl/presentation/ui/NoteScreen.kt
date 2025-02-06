@@ -22,7 +22,6 @@ import androidx.compose.ui.input.key.type
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.designsystem.SIDE_EFFECTS_KEY
@@ -148,10 +147,10 @@ fun NoteScreen(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun NoteScreenPreview() {
-//    NoteScreen(note = NoteItemUiModel.getDefault())
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun NoteScreenPreview() {
+////    NoteScreen(note = NoteItemUiModel.getDefault())
+//}
 
 private const val NOTE_SCREEN_TAG = "NOTE_SCREEN_TAG"

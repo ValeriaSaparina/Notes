@@ -24,7 +24,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.R
 import com.example.designsystem.SIDE_EFFECTS_KEY
@@ -136,12 +135,12 @@ private fun ShowData(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun FoldersScreenPreview() {
-//    NotesTheme {
-//        FoldersScreen(sectionData = SectionData.getDefaultList())
-//    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun FoldersScreenPreview() {
+////    NotesTheme {
+////        FoldersScreen(sectionData = SectionData.getDefaultList())
+////    }
+//}
 
 const val FOLDER_SCREEN_TAG = "FolderScreenTag"

@@ -19,11 +19,9 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -31,7 +29,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.designsystem.yellowAccent
@@ -127,9 +124,9 @@ fun NewFolderDialog(onDismissRequest: () -> Unit, onSaveRequest: (String) -> Uni
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun NewFolderDialogPreview() {
-    var showBottomSheet by remember { mutableStateOf(false) }
-    NewFolderDialog(onDismissRequest = { showBottomSheet = false })
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun NewFolderDialogPreview() {
+//    var showBottomSheet by remember { mutableStateOf(false) }
+//    NewFolderDialog(onDismissRequest = { showBottomSheet = false })
+//}
