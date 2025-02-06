@@ -7,8 +7,8 @@ import com.example.notes.api.mapper.toData
 import com.example.notes.api.mapper.toDomain
 
 class NotesRepositoryImpl(
-    private val localDataSource: LocalNotesDataSource
-): NotesRepository {
+    private val localDataSource: LocalNotesDataSource,
+) : NotesRepository {
     override suspend fun getNotesByFolderId(folderId: Long): List<NoteDomainModel> {
         return localDataSource.getNotesByFolderId(folderId).toDomain()
     }

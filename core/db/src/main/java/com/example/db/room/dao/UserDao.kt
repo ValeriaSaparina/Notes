@@ -11,10 +11,13 @@ import com.example.db.room.entity.UserEntity
 interface UserDao {
     @Insert
     fun createUser(user: UserEntity)
+
     @Query("SELECT * FROM users LIMIT 1")
     fun getCurrentUser(): UserEntity
+
     @Update
     fun updateCurrentUser(user: UserEntity)
+
     @Query("DELETE FROM users")
     fun deleteUser()
 }

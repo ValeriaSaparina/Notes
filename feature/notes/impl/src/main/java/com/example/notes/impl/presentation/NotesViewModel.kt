@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 class NotesViewModel(
     private val getNotesByFolderIdUseCase: GetNotesByFolderIdUseCase,
     private val createNoteUseCase: CreateNoteUseCase,
-    private val folderId: Long
+    private val folderId: Long,
 ) :
     BaseViewModel<Event, UiState, Effect>() {
 
@@ -52,7 +52,7 @@ class NotesViewModel(
 
     private fun createNewNote(
         note: NoteItemUiModel,
-        isSync: Boolean = false /* TODO: isSync */
+        isSync: Boolean = false, /* TODO: isSync */
     ) {
         viewModelScope.launch {
             val currentTime = TimeUtil.currentTimeUtc()

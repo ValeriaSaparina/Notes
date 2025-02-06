@@ -38,29 +38,32 @@ fun SectionHeader(sectionData: SectionData, isExpanded: Boolean, onHeaderClick: 
             text = sectionData.headerText,
         )
         val rotate = if (isExpanded) 90F else 0F
-        GetImage(id = R.drawable.outline_keyboard_arrow_right_24, modifier = Modifier.rotate(rotate))
+        GetImage(
+            id = R.drawable.outline_keyboard_arrow_right_24,
+            modifier = Modifier.rotate(rotate)
+        )
     }
 
 }
-
-@Preview(showBackground = true)
-@Composable
-fun HeaderItemExpandedPreview() {
-    SectionHeader(
-        SectionData(
-            "Expanded",
-            items = mutableListOf(FolderItemUiModel.getDefault(), FolderItemUiModel.getDefault())
-        ), true
-    ) {}
-}
-
-@Preview(showBackground = true)
-@Composable
-fun HeaderItemCollapsedPreview() {
-    SectionHeader(
-        SectionData(
-            "Collapsed",
-            items = mutableListOf(FolderItemUiModel.getDefault(), FolderItemUiModel.getDefault())
-        ), false
-    ) {}
-}
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun HeaderItemExpandedPreview() {
+//    SectionHeader(
+//        SectionData(
+//            "Expanded",
+//            items = mutableListOf(FolderItemUiModel.getDefault(), FolderItemUiModel.getDefault())
+//        ), true
+//    ) {}
+//}
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun HeaderItemCollapsedPreview() {
+//    SectionHeader(
+//        SectionData(
+//            "Collapsed",
+//            items = mutableListOf(FolderItemUiModel.getDefault(), FolderItemUiModel.getDefault())
+//        ), false
+//    ) {}
+//}

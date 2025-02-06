@@ -5,7 +5,7 @@ data class NoteItemUiModel(
     val title: String,
     val text: String,
     val dateOfEditing: String,
-    val nameFolder: String
+    val nameFolder: String,
 ) : SectionItem {
     companion object {
         fun getDefault() =

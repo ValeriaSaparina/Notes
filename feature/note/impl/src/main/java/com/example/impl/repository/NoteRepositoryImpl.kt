@@ -7,7 +7,7 @@ import com.example.notes.api.mapper.*
 import com.example.notes.api.model.NoteDomainModel
 
 class NoteRepositoryImpl(
-    private val localDataSource: LocalNoteDataSource
+    private val localDataSource: LocalNoteDataSource,
 ) : NoteRepository {
     override suspend fun updateNote(note: NoteDomainModel) {
         localDataSource.saveNote(note.toData())

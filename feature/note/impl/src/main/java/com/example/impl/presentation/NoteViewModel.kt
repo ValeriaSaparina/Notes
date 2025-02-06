@@ -18,7 +18,7 @@ class NoteViewModel(
     private val getNoteByIdUseCase: GetNoteByIdUseCase,
     private val updateNoteUseCase: UpdateNoteUseCase,
     private val folderId: Long,
-    private val noteId: Long
+    private val noteId: Long,
 ) : BaseViewModel<Event, UiState, Effect>() {
 
     init {
@@ -57,7 +57,7 @@ class NoteViewModel(
                 .onSuccess {
 
                 }
-                .onFailure {thr ->
+                .onFailure { thr ->
                     Log.d("NOTE SCREEN", "SAVE FAILED: ${thr.message}")
                 }
         }
@@ -67,7 +67,7 @@ class NoteViewModel(
         viewModelScope.launch {
             setState { copy(isLoading = true, isError = false) }
             getNoteByIdUseCase.invoke(noteId)
-                .onSuccess {note ->
+                .onSuccess { note ->
                     Log.d("NOTE SCREEN", note.text)
                     setState { copy(note = note.toUi(), isLoading = false) }
                     setEffect { Effect.NoteWasLoaded }

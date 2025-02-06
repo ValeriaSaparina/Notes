@@ -38,7 +38,7 @@ fun SignUpScreen(
     state: UiState,
     effectFlow: Flow<Effect>?,
     onEventSent: (event: Event) -> Unit,
-    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit
+    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit,
 ) {
     val name = remember {
         mutableStateOf("")

@@ -42,7 +42,7 @@ fun FoldersScreen(
     state: UiState,
     effectFlow: Flow<Effect>?,
     onEventSent: (event: Event) -> Unit,
-    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit
+    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit,
 ) {
 
     Scaffold(
@@ -90,6 +90,7 @@ fun FoldersScreen(
                     Effect.DataWasLoaded -> {
                         Log.d(FOLDER_SCREEN_TAG, "data was loaded")
                     }
+
                     is Effect.Navigation.ToNewNote -> onNavigationRequested(effect)
                     is Effect.Navigation.ToNotes -> onNavigationRequested(effect)
                     Effect.FolderWasCreated -> Log.d(FOLDER_SCREEN_TAG, "folder was created")
@@ -118,11 +119,14 @@ fun FoldersScreen(
     }
 
 
-
 }
 
 @Composable
-private fun ShowData(paddingValue: PaddingValues, state: UiState, onEventSent: (event: Event) -> Unit) {
+private fun ShowData(
+    paddingValue: PaddingValues,
+    state: UiState,
+    onEventSent: (event: Event) -> Unit,
+) {
     ExpandableList(
         modifier = Modifier.padding(paddingValue),
         sectionData = state.sectionData,

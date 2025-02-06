@@ -15,7 +15,7 @@ class SignUpUseCaseImpl(
     override suspend fun invoke(
         email: String,
         name: String,
-        password: String
+        password: String,
     ): Result<UserEntity> {
         return runSuspendCatching {
             withContext(dispatcher) {

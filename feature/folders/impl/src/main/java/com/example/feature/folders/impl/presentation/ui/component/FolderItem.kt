@@ -67,14 +67,14 @@ fun FolderItem(modifier: Modifier = Modifier, data: FolderUiModel, isDivider: Bo
 @Composable
 fun FolderItemPreview() {
 //    NotesTheme {
-        LazyColumn {
-            items(4) {
-                FolderItem(
-                    data = FolderUiModel.getDefault(),
-                    isDivider = it != 4
-                )
-            }
-
+    LazyColumn {
+        items(4) {
+            FolderItem(
+                data = FolderUiModel.getDefault(),
+                isDivider = it != 4
+            )
         }
+
+    }
 //    }
 }

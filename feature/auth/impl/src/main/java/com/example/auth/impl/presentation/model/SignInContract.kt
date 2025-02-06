@@ -17,7 +17,7 @@ class SignInContract {
     data class UiState(
         val wrongCredentials: Boolean,
         val isLoading: Boolean,
-        val isError: Boolean
+        val isError: Boolean,
     ) : ViewState
 
     sealed class Effect : ViewSideEffect {

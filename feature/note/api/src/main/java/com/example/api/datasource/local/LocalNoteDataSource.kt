@@ -6,5 +6,5 @@ import com.example.db.room.entity.NoteWithFolderEntity
 interface LocalNoteDataSource {
     suspend fun saveNote(note: NoteEntity)
 
-    suspend fun getNoteById(noteId: Long) : NoteWithFolderEntity
+    suspend fun getNoteById(noteId: Long): NoteWithFolderEntity
 }

@@ -53,9 +53,11 @@ fun SignInScreen(
         state.isError -> {
             Toast.makeText(LocalContext.current, "Something went wrong", Toast.LENGTH_LONG).show()
         }
+
         state.wrongCredentials -> {
             Toast.makeText(LocalContext.current, "Credentials are wrong", Toast.LENGTH_LONG).show()
         }
+
         else -> {
 
             Column(

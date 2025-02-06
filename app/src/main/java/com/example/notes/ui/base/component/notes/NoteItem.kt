@@ -42,7 +42,7 @@ fun NoteItem(modifier: Modifier = Modifier, data: NoteItemUiModel, isDivider: Bo
 //                fontSize = com.example.designsystem.Typography.bodyLarge.fontSize
             )
             Row {
-                Text(text = data.dateOfEditing,/* fontSize = bodySmall.fontSize*/)
+                Text(text = data.dateOfEditing/* fontSize = bodySmall.fontSize*/)
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = data.text,

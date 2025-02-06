@@ -5,7 +5,7 @@ import com.example.auth.api.datasource.PreferencesDataSource
 
 class SharedPreferencesDataSource(
     private val sharedPreferences: SharedPreferences,
-): PreferencesDataSource {
+) : PreferencesDataSource {
     override suspend fun signIn(id: String) {
         sharedPreferences.edit()
             .putString(SP_USER_ID_KEY, id)

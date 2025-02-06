@@ -8,8 +8,9 @@ interface RemoteDataSource {
     suspend fun signUp(
         name: String,
         password: String,
-        email: String
+        email: String,
     ): UserEntity
+
     suspend fun getCurrentUser(): UserEntity
     suspend fun updateCurrentUser(user: UserEntity)
     suspend fun signOut()

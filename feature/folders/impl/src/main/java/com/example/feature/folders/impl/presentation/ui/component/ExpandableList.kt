@@ -30,7 +30,7 @@ import com.example.feature.folders.impl.presentation.model.FolderUiModel
 fun ExpandableList(
     modifier: Modifier = Modifier,
     sectionData: List<SectionData>,
-    onItemClicked: (Long) -> Unit
+    onItemClicked: (Long) -> Unit,
 ) {
     val isExpandedMap = rememberSavableSnapshotStateMap {
         List(sectionData.size) { index: Int -> index to true }.toMutableStateMap()
@@ -56,7 +56,7 @@ fun LazyListScope.section(
     sectionData: SectionData,
     isExpanded: Boolean,
     onItemClicked: (Long) -> Unit,
-    onHeaderClick: () -> Unit
+    onHeaderClick: () -> Unit,
 ) {
     item {
         SectionHeader(

@@ -31,7 +31,7 @@ fun NoteItem(
     modifier: Modifier = Modifier,
     note: NoteItemUiModel,
     isDivider: Boolean = false,
-    onItemClick: (Long, Long) -> Unit
+    onItemClick: (Long, Long) -> Unit,
 ) {
     Column {
         Column(

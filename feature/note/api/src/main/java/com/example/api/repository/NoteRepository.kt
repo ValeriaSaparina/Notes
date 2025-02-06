@@ -6,6 +6,6 @@ interface NoteRepository {
 
     suspend fun updateNote(note: NoteDomainModel)
 
-    suspend fun getNoteById(noteId: Long) : NoteDomainModel
+    suspend fun getNoteById(noteId: Long): NoteDomainModel
 
 }

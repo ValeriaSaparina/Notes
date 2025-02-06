@@ -14,7 +14,7 @@ class FoldersContract {
         data class OnCreateNewNoteClicked(val folderId: Long, val noteId: Long) : Event()
         data class OnFolderClicked(val folderId: Long) : Event()
 
-        data object Empty: Event()
+        data object Empty : Event()
     }
 
     data class UiState(
@@ -24,7 +24,7 @@ class FoldersContract {
     ) : ViewState
 
     sealed class Effect : ViewSideEffect {
-        data object Empty: Effect()
+        data object Empty : Effect()
         data object DataWasLoaded : Effect()
         data class DataLoadingError(val message: String) : Effect()
         data object FolderWasCreated : Effect()

@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class FoldersViewModel(
     private val getAllFoldersUseCase: GetAllFoldersUseCase,
-    private val createFolderUseCase: CreateFolderUseCase
+    private val createFolderUseCase: CreateFolderUseCase,
 ) : BaseViewModel<Event, UiState, Effect>() {
 
     init {

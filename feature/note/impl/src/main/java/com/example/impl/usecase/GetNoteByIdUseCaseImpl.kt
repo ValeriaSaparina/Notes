@@ -11,7 +11,7 @@ import kotlinx.coroutines.withContext
 
 class GetNoteByIdUseCaseImpl(
     private val repository: NoteRepository,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : GetNoteByIdUseCase {
     override suspend fun invoke(noteId: Long): Result<NoteDomainModel> {
         return runSuspendCatching {

@@ -14,7 +14,7 @@ class UserRepositoryImpl(
     override suspend fun signUp(
         email: String,
         name: String,
-        password: String
+        password: String,
     ): UserEntity {
         val user = remoteDataSource.signUp(name, password, email)
         localDataSource.signIn(user)

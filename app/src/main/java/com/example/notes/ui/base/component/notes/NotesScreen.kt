@@ -25,7 +25,7 @@ fun NotesScreen(
     state: UiState,
     effectFlow: Flow<Effect>?,
     onEventSent: (event: Event) -> Unit,
-    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit
+    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit,
 ) {
 
     Scaffold(
@@ -38,6 +38,7 @@ fun NotesScreen(
             state.isError -> {
                 NetworkError { onEventSent(Event.Retry) }
             }
+
             else -> NotesContent(paddingValues, state.notesList)
         }
 
@@ -58,7 +59,7 @@ fun NotesScreen(
 @Composable
 fun NotesContent(paddingValues: PaddingValues, notes: List<NoteItemUiModel>) {
     LazyColumn(modifier = Modifier.padding(paddingValues)) {
-        itemsIndexed(items = notes, key = {_, note -> note.id}) { index, note ->
+        itemsIndexed(items = notes, key = { _, note -> note.id }) { index, note ->
             NoteItem(data = note, isDivider = notes.lastIndex != index)
         }
     }

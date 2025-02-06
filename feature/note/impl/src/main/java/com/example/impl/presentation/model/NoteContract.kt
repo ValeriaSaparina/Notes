@@ -11,7 +11,7 @@ class NoteContract {
         data object GetNote : Event()
         data object Retry : Event()
         data object OnBackClicked : Event()
-        data class SaveNote(val note: NoteItemUiModel): Event()
+        data class SaveNote(val note: NoteItemUiModel) : Event()
         data object Empty : Event()
     }
 

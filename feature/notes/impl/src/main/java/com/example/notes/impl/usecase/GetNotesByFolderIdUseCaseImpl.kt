@@ -11,8 +11,8 @@ import kotlinx.coroutines.withContext
 
 class GetNotesByFolderIdUseCaseImpl(
     private val repository: NotesRepository,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
-): GetNotesByFolderIdUseCase {
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
+) : GetNotesByFolderIdUseCase {
     override suspend fun invoke(folderId: Long): Result<List<NoteDomainModel>> {
         return runSuspendCatching {
             withContext(dispatcher) {

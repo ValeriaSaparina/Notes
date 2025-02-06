@@ -46,7 +46,7 @@ fun NotesScreen(
     state: UiState,
     effectFlow: Flow<Effect>?,
     onEventSent: (event: Event) -> Unit,
-    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit
+    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit,
 ) {
     val title =
         remember { mutableStateOf(if (state.notesList.isNullOrEmpty()) "" else state.notesList[0].title) }
@@ -55,7 +55,7 @@ fun NotesScreen(
 
         topBar = {
             Log.d("NOTES SCREEN", "title = ${title.value}")
-            TopAppBar(title = { Text(title.value) } )
+            TopAppBar(title = { Text(title.value) })
         },
         bottomBar = {
             BottomAppBar(containerColor = Color.Transparent) {
@@ -111,7 +111,8 @@ fun NotesScreen(
             }
 
             else -> {
-                title.value = if (state.notesList.isNullOrEmpty()) "" else state.notesList[0].folder.name
+                title.value =
+                    if (state.notesList.isNullOrEmpty()) "" else state.notesList[0].folder.name
                 Log.d(NOTES_SCREEN_TAG, "IS SHOWING ${title.value}")
                 NotesContent(paddingValues, state.notesList.orEmpty()) { noteId, folderId ->
                     onEventSent(Event.OnNoteClicked(noteId = noteId, folderId = folderId))
@@ -127,7 +128,7 @@ fun NotesScreen(
 fun NotesContent(
     paddingValues: PaddingValues,
     notes: List<NoteItemUiModel>,
-    onItemClick: (Long, Long) -> Unit
+    onItemClick: (Long, Long) -> Unit,
 ) {
     LazyColumn(modifier = Modifier.padding(paddingValues)) {
         itemsIndexed(items = notes, key = { _, note -> note.id }) { index, note ->
@@ -135,14 +136,21 @@ fun NotesContent(
                 0 -> {
                     Modifier.clip(RoundedCornerShape(24.dp, 24.dp, 0.dp, 0.dp))
                 }
+
                 notes.lastIndex -> {
                     Modifier.clip(RoundedCornerShape(0.dp, 0.dp, 24.dp, 24.dp))
                 }
+
                 else -> {
                     Modifier
                 }
             }
-            NoteItem(modifier = modifier, note = note, isDivider = notes.lastIndex != index, onItemClick = onItemClick)
+            NoteItem(
+                modifier = modifier,
+                note = note,
+                isDivider = notes.lastIndex != index,
+                onItemClick = onItemClick
+            )
         }
     }
 }

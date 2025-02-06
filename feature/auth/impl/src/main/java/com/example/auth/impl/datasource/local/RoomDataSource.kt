@@ -5,7 +5,7 @@ import com.example.db.room.entity.UserEntity
 import com.example.db.room.dao.UserDao
 
 class RoomDataSource(
-    private val userDao: UserDao
+    private val userDao: UserDao,
 ) : LocalDataSource {
     override suspend fun signIn(user: UserEntity) {
         userDao.createUser(user)

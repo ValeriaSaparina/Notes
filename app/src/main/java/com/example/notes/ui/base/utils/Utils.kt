@@ -22,7 +22,7 @@ fun GetImage(
     @DrawableRes id: Int,
     modifier: Modifier = Modifier,
     textDescription: String = "",
-    contentScale: ContentScale = ContentScale.Fit
+    contentScale: ContentScale = ContentScale.Fit,
 ) {
     Image(
         modifier = modifier,

@@ -21,7 +21,7 @@ import com.example.notes.ui.base.data.NoteItemUiModel
 fun NoteScreen(
     modifier: Modifier = Modifier,
     note: NoteItemUiModel,
-    onValueChange: (String) -> Unit = {}
+    onValueChange: (String) -> Unit = {},
 ) {
 
     Column(modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)) {

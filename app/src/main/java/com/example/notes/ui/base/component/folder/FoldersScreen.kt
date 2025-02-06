@@ -42,7 +42,7 @@ fun FoldersScreen(
     state: UiState,
     effectFlow: Flow<Effect>?,
     onEventSent: (event: Event) -> Unit,
-    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit
+    onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit,
 ) {
 
     Scaffold(
@@ -109,12 +109,12 @@ fun FoldersScreen(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun FoldersScreenPreview() {
-    NotesTheme {
-//        FoldersScreen(sectionData = SectionData.getDefaultList())
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun FoldersScreenPreview() {
+//    NotesTheme {
+////        FoldersScreen(sectionData = SectionData.getDefaultList())
+//    }
+//}
 
 const val FOLDER_SCREEN_TAG = "FolderScreenTag"
