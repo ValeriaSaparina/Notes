@@ -27,6 +27,8 @@ gradle = "8.1.0"
 googleServices = "4.4.2"
 firebaseCrashlyticsGradle = "3.0.3"
 firebaseAnalytics = "21.5.0"
+firebasePerf = "21.0.4"
+perfPlugin = "1.4.2"
 
 
 
@@ -69,6 +71,8 @@ gradle = { group = "com.android.tools.build", name = "gradle", version.ref = "gr
 google-services = { group = "com.google.gms", name = "google-services", version.ref = "googleServices" }
 firebase-crashlytics-gradle = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "firebaseCrashlyticsGradle" }
 firebase-analytics-ktx = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalytics" }
+firebase-perf = { group = "com.google.firebase", name = "firebase-perf", version.ref = "firebasePerf" }
+perf-plugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "perfPlugin" }
 #firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics" }
 
 [plugins]

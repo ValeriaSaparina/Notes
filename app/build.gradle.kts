@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+    id("com.google.firebase.firebase-perf")
 }
 
 android {
@@ -77,6 +78,7 @@ dependencies {
     implementation(project(":feature:auth:impl"))
     implementation(libs.firebase.crashlytics)
     implementation(libs.firebase.analytics.ktx)
+    implementation(libs.firebase.perf)
 
 //    implementation(project(":feature:folders:impl"))
 //    implementation(project(":core:db"))
