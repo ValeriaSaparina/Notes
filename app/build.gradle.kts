@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -74,6 +75,7 @@ dependencies {
     implementation(project(":feature:note:impl"))
     implementation(project(":feature:auth:impl"))
     implementation(project(":feature:auth:impl"))
+    implementation(libs.firebase.crashlytics)
 
 //    implementation(project(":feature:folders:impl"))
 //    implementation(project(":core:db"))
