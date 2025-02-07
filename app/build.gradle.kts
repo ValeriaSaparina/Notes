@@ -76,6 +76,7 @@ dependencies {
     implementation(project(":feature:auth:impl"))
     implementation(project(":feature:auth:impl"))
     implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.analytics.ktx)
 
 //    implementation(project(":feature:folders:impl"))
 //    implementation(project(":core:db"))
