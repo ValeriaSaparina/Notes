@@ -41,15 +41,15 @@ class GetNotesByFolderIdUseCaseTest {
     fun `getNotes should return success result when repository call is successful`() =
         runTest {
             // Arrange
-            val folderId = 1L
+            val folderId = "1L"
             val expectedNotes = listOf(
                 NoteDomainModel(
-                    id = 1820,
+                    id = "1820",
                     title = "priv",
                     text = "et",
                     createDate = 9431,
                     editDate = 5094,
-                    folder = FolderModel(id = 6629, name = "Efrain Gallagher")
+                    folder = FolderModel(id = "6629", name = "Efrain Gallagher")
                 )
             )
             coEvery { mockRepository.getNotesByFolderId(folderId) } returns expectedNotes
@@ -65,7 +65,7 @@ class GetNotesByFolderIdUseCaseTest {
     @Test
     fun `updateNote should return failure result when repository call fails`() = runTest {
         // Arrange
-        val folderId = -1L
+        val folderId = "-1L"
         val expectedException = RuntimeException("Folder is not exist")
         coEvery { mockRepository.getNotesByFolderId(folderId) } throws expectedException
 
