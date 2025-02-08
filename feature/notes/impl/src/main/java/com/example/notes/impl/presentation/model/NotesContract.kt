@@ -17,7 +17,7 @@ class NotesContract {
             val isSync: Boolean,
         ) : Event()
 
-        data class OnNoteClicked(val folderId: Long, val noteId: Long) : Event()
+        data class OnNoteClicked(val folderId: String, val noteId: String) : Event()
     }
 
     data class UiState(
@@ -31,7 +31,7 @@ class NotesContract {
         data class DataLoadingError(val message: String) : Effect()
         data class NoteCreatingError(val message: String) : Effect()
         sealed class Navigation : Effect() {
-            data class ToNote(val folderId: Long, val noteId: Long) : Navigation()
+            data class ToNote(val folderId: String, val noteId: String) : Navigation()
             data object ToPrevious : Navigation()
         }
     }

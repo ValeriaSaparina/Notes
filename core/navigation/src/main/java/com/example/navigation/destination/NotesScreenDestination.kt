@@ -12,12 +12,13 @@ import org.koin.core.parameter.parametersOf
 
 
 @Composable
-fun NotesScreenDestination(navController: NavHostController, folderId: Long) {
+fun NotesScreenDestination(navController: NavHostController, folderId: String) {
     val viewModel: NotesViewModel = koinViewModel { parametersOf(folderId) }
     NotesScreen(
         state = viewModel.viewState.value,
         effectFlow = viewModel.effect,
         onEventSent = { event -> viewModel.setEvent(event) },
+        navHostController = navController,
         onNavigationRequested = { effect ->
             when (effect) {
                 is Effect.Navigation.ToNote -> {

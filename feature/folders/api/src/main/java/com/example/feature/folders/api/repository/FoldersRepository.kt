@@ -7,5 +7,5 @@ interface FoldersRepository {
     suspend fun getAllFolders(): List<FoldersListModel>
     suspend fun getAllLocalFolders(): List<SectionItem>
     suspend fun getAllRemoteFolders(): List<SectionItem>
-    suspend fun createFolder(folderName: String): Long
+    suspend fun createFolder(folderName: String, isSync: Boolean): String
 }

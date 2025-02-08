@@ -44,6 +44,7 @@ dependencies {
 
     implementation(libs.koin)
     implementation(libs.koin.compose)
+    implementation(libs.bundles.firebase)
 
     implementation(project(":feature:folders:api"))
     implementation(project(":core:common"))

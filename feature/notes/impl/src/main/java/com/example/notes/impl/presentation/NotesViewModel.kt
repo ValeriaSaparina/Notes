@@ -11,13 +11,14 @@ import com.example.notes.api.usecase.GetNotesByFolderIdUseCase
 import com.example.notes.impl.presentation.model.NotesContract.Effect
 import com.example.notes.impl.presentation.model.NotesContract.Event
 import com.example.notes.impl.presentation.model.NotesContract.UiState
+import com.example.notes.impl.presentation.ui.NOTES_SCREEN_TAG
 import com.example.utils.resource.TimeUtil
 import kotlinx.coroutines.launch
 
 class NotesViewModel(
     private val getNotesByFolderIdUseCase: GetNotesByFolderIdUseCase,
     private val createNoteUseCase: CreateNoteUseCase,
-    private val folderId: Long,
+    private val folderId: String,
 ) :
     BaseViewModel<Event, UiState, Effect>() {
 
@@ -52,7 +53,7 @@ class NotesViewModel(
 
     private fun createNewNote(
         note: NoteItemUiModel,
-        isSync: Boolean = false, /* TODO: isSync */
+        isSync: Boolean = false,
     ) {
         viewModelScope.launch {
             val currentTime = TimeUtil.currentTimeUtc()
@@ -64,17 +65,19 @@ class NotesViewModel(
                 isSync
             )
                 .onSuccess { noteId ->
+                    Log.d(NOTES_SCREEN_TAG, "NOTE ID: ${noteId}")
                     setEffect { Effect.Navigation.ToNote(folderId, noteId) }
                     setState { copy(isLoading = false, isError = false) }
                 }
                 .onFailure {
+                    Log.d(NOTES_SCREEN_TAG, "EXCEPTION: ${it}")
                     setEffect { Effect.NoteCreatingError(it.message ?: "Something went wrong") }
                     setState { copy(isLoading = false, isError = true) }
                 }
         }
     }
 
-    private fun getNotesData(folderId: Long) {
+    private fun getNotesData(folderId: String) {
 
         viewModelScope.launch {
             setState { copy(isLoading = true, isError = false) }

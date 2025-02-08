@@ -38,34 +38,52 @@ class FoldersViewModel(
                 Effect.Navigation.ToNewNote(event.folderId, event.noteId)
             }
 
-            is Event.OnCreateNewFolderClicked -> createNewFolder(event.folderName)
+            is Event.OnCreateNewFolderClicked -> createNewFolder(event.folderName, event.isSync)
             Event.Retry -> getFoldersData()
             Event.Empty -> setEffect { Effect.Empty }
         }
     }
 
-    private fun createNewFolder(folderName: String) {
+    private fun createNewFolder(folderName: String, isSync: Boolean) {
 
         viewModelScope.launch {
             setState { copy(isLoading = true, isError = false) }
-            createFolderUseCase.invoke(folderName)
+            createFolderUseCase.invoke(folderName, isSync)
                 .onSuccess { id ->
                     setState {
-                        copy(
-                            sectionData = sectionData.apply {
-                                find { it.headerId == R.string.local_name_folder }!!.items.apply {
-                                    add(
-                                        FolderUiModel(
-                                            id = id,
-                                            name = folderName,
-                                            notesNumber = 0
+                        if (isSync) {
+                            copy(
+                                sectionData = sectionData.apply {
+                                    find { it.headerId == R.string.remote_name_folder }!!.items.apply {
+                                        add(
+                                            FolderUiModel(
+                                                id = id,
+                                                name = folderName,
+                                                notesNumber = 0
+                                            )
                                         )
-                                    )
-                                }
-                            },
-                            isLoading = false,
-                            isError = false
-                        )
+                                    }
+                                },
+                                isLoading = false,
+                                isError = false
+                            )
+                        } else {
+                            copy(
+                                sectionData = sectionData.apply {
+                                    find { it.headerId == R.string.local_name_folder }!!.items.apply {
+                                        add(
+                                            FolderUiModel(
+                                                id = id,
+                                                name = folderName,
+                                                notesNumber = 0
+                                            )
+                                        )
+                                    }
+                                },
+                                isLoading = false,
+                                isError = false
+                            )
+                        }
                     }
                     setEffect { Effect.FolderWasCreated }
                 }

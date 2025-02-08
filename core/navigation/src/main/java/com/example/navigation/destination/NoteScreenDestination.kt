@@ -10,7 +10,7 @@ import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
 @Composable
-fun NoteScreenDestination(navController: NavHostController, folderId: Long, noteId: Long) {
+fun NoteScreenDestination(navController: NavHostController, folderId: String, noteId: String) {
     Log.d("NOTES SCREEN CLICK", "noteID = $noteId\n folderId = $folderId")
 
     val viewModel: NoteViewModel = koinViewModel { parametersOf(folderId, noteId) }

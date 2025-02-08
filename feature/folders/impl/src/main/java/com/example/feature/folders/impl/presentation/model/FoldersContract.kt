@@ -10,9 +10,9 @@ class FoldersContract {
     sealed class Event : ViewEvent {
         data object GetData : Event()
         data object Retry : Event()
-        data class OnCreateNewFolderClicked(val folderName: String) : Event()
-        data class OnCreateNewNoteClicked(val folderId: Long, val noteId: Long) : Event()
-        data class OnFolderClicked(val folderId: Long) : Event()
+        data class OnCreateNewFolderClicked(val folderName: String, val isSync: Boolean) : Event()
+        data class OnCreateNewNoteClicked(val folderId: String, val noteId: String) : Event()
+        data class OnFolderClicked(val folderId: String) : Event()
 
         data object Empty : Event()
     }
@@ -30,8 +30,8 @@ class FoldersContract {
         data object FolderWasCreated : Effect()
         data class FolderCreateError(val message: String) : Effect()
         sealed class Navigation : Effect() {
-            data class ToNewNote(val folderId: Long, val noteId: Long) : Navigation()
-            data class ToNotes(val folderId: Long) : Navigation()
+            data class ToNewNote(val folderId: String, val noteId: String) : Navigation()
+            data class ToNotes(val folderId: String) : Navigation()
         }
     }
 

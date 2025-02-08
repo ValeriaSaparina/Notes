@@ -42,24 +42,28 @@ class SignInViewModel(
         when (event) {
             is Event.OnSignInClicked -> signIn(event.email, event.password)
             Event.OnSignUpClicked -> setEffect { Effect.Navigation.ToSignUp }
-                Event.MessageWasShowed -> setState {
-                    copy(
-                        isLoading = false,
-                        isError = false,
-                        errorMessage = ""
-                    )
-                }
+            Event.MessageWasShowed -> setState {
+                copy(
+                    isLoading = false,
+                    isError = false,
+                    errorMessage = ""
+                )
+            }
         }
     }
 
     private fun signIn(email: String, password: String) {
         if (validate(email, password)) {
             viewModelScope.launch {
-                setState { copy(errorMessage = "",
-                    isLoading = true,
-                    isError = false,
-                    isWrongEmail = false,
-                    isWrongPassword = false) }
+                setState {
+                    copy(
+                        errorMessage = "",
+                        isLoading = true,
+                        isError = false,
+                        isWrongEmail = false,
+                        isWrongPassword = false
+                    )
+                }
                 signInUseCase.invoke(email, password)
                     .onSuccess { user ->
                         setEffect { Effect.Navigation.ToFolders(user.id) }
@@ -67,13 +71,33 @@ class SignInViewModel(
                     .onFailure { throwable ->
                         when (throwable) {
                             is FirebaseAuthException -> {
-                                setState { copy(isLoading = false, isError = true, errorMessage = "wrong credentials") }
+                                setState {
+                                    copy(
+                                        isLoading = false,
+                                        isError = true,
+                                        errorMessage = "wrong credentials"
+                                    )
+                                }
                             }
+
                             is FirebaseNetworkException -> {
-                                setState { copy(isLoading = false, isError = true, errorMessage = "network error") }
+                                setState {
+                                    copy(
+                                        isLoading = false,
+                                        isError = true,
+                                        errorMessage = "network error"
+                                    )
+                                }
                             }
+
                             else -> {
-                                setState { copy(isLoading = false, isError = true, errorMessage = "unexpected error") }
+                                setState {
+                                    copy(
+                                        isLoading = false,
+                                        isError = true,
+                                        errorMessage = "unexpected error"
+                                    )
+                                }
                             }
                         }
                     }

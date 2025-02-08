@@ -28,7 +28,7 @@ fun NoteItem(
     modifier: Modifier = Modifier,
     note: NoteItemUiModel,
     isDivider: Boolean = false,
-    onItemClick: (Long, Long) -> Unit,
+    onItemClick: (String, String) -> Unit,
 ) {
     Column {
         Column(
@@ -87,29 +87,3 @@ fun NoteItem(
         }
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun NoteItemPreview() {
-//    NoteItem(note = NoteItemUiModel.getDefault(), onItemClick = ::func)
-//}
-//
-//@Preview(showBackground = true)
-//@Composable
-//fun NoteItemListPreview() {
-//    LazyColumn {
-//        val list = listOf(
-//            NoteItemUiModel.getDefault(),
-//            NoteItemUiModel.getDefault(),
-//            NoteItemUiModel.getDefault(),
-//            NoteItemUiModel.getDefault()
-//        )
-//        itemsIndexed(
-//            list
-//        ) { index, data ->
-//            NoteItem(note = data, isDivider = list.lastIndex != index, onItemClick = ::func)
-//        }
-//    }
-//}
-
-private fun func(id1: Long, id2: Long) {}

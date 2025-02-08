@@ -58,13 +58,33 @@ class SignUpViewModel(
                     .onFailure { throwable ->
                         when (throwable) {
                             is FirebaseAuthException -> {
-                                setState { copy(isLoading = false, isError = true, errorMessage = "email already exists") }
+                                setState {
+                                    copy(
+                                        isLoading = false,
+                                        isError = true,
+                                        errorMessage = "email already exists"
+                                    )
+                                }
                             }
+
                             is FirebaseNetworkException -> {
-                                setState { copy(isLoading = false, isError = true, errorMessage = "network error") }
+                                setState {
+                                    copy(
+                                        isLoading = false,
+                                        isError = true,
+                                        errorMessage = "network error"
+                                    )
+                                }
                             }
+
                             else -> {
-                                setState { copy(isLoading = false, isError = true, errorMessage = "unexpected error") }
+                                setState {
+                                    copy(
+                                        isLoading = false,
+                                        isError = true,
+                                        errorMessage = "unexpected error"
+                                    )
+                                }
                             }
                         }
                     }

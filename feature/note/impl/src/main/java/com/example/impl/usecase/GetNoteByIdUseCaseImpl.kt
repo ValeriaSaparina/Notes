@@ -12,7 +12,7 @@ class GetNoteByIdUseCaseImpl(
     private val repository: NoteRepository,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : GetNoteByIdUseCase {
-    override suspend fun invoke(noteId: Long): Result<NoteDomainModel> {
+    override suspend fun invoke(noteId: String): Result<NoteDomainModel> {
         return runSuspendCatching {
             withContext(dispatcher) {
                 repository.getNoteById(noteId)

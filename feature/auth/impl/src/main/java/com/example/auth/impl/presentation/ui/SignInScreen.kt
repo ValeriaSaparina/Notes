@@ -110,7 +110,7 @@ fun SignInScreen(
             },
             trailingIcon = {
                 ErrorIconShow(isErrorPassword.value)
-            }        )
+            })
         OutlinedButton(
             modifier = Modifier
                 .padding(top = 16.dp)
@@ -146,12 +146,3 @@ fun SignInScreen(
     }
 
 }
-
-
-//@Preview(showBackground = true)
-//@Composable
-//fun SignInPreview() {
-//    NotesTheme {
-////        SignInScreen()
-//    }
-//}

@@ -15,8 +15,15 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val noteModule = module {
-    viewModel { (folderId: Long, noteId: Long) -> NoteViewModel(get(), get(), folderId, noteId) }
-    single<NoteRepository> { NoteRepositoryImpl(get()) }
+    viewModel { (folderId: String, noteId: String) ->
+        NoteViewModel(
+            get(),
+            get(),
+            folderId,
+            noteId
+        )
+    }
+    single<NoteRepository> { NoteRepositoryImpl(get(), get()) }
     single<LocalNoteDataSource> { RoomNoteDataSource(get()) }
 
     single<CoroutineDispatcher> { Dispatchers.IO }

@@ -7,13 +7,16 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -22,21 +25,28 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.designsystem.R
+import com.example.designsystem.SIDE_EFFECTS_KEY
 import com.example.designsystem.yellowAccent
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NewFolderDialog(onDismissRequest: () -> Unit, onSaveRequest: (String) -> Unit = {}) {
+fun NewFolderDialog(
+    onDismissRequest: () -> Unit,
+    onSaveRequest: (String, isSync: Boolean) -> Unit,
+) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     val scope = rememberCoroutineScope()
 
@@ -44,6 +54,8 @@ fun NewFolderDialog(onDismissRequest: () -> Unit, onSaveRequest: (String) -> Uni
     val interactionSource = remember { MutableInteractionSource() }
     val visualTransformation = remember { VisualTransformation.None }
     val focusRequester = remember { FocusRequester() }
+
+    val isSync = remember { mutableStateOf(false) }
 
     ModalBottomSheet(
         onDismissRequest = onDismissRequest,
@@ -57,7 +69,7 @@ fun NewFolderDialog(onDismissRequest: () -> Unit, onSaveRequest: (String) -> Uni
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = "Cancel",
+                text = stringResource(R.string.cancel),
                 color = yellowAccent,
                 modifier = Modifier.clickable {
                     scope.launch { sheetState.hide() }.invokeOnCompletion {
@@ -68,15 +80,15 @@ fun NewFolderDialog(onDismissRequest: () -> Unit, onSaveRequest: (String) -> Uni
                     }
                 })
             Text(
-                text = "New Folder",
+                text = stringResource(R.string.new_folder),
                 fontWeight = FontWeight.Bold,
             )
             Text(
-                text = "Done",
+                text = stringResource(R.string.done),
                 color = yellowAccent, fontWeight = FontWeight.Bold,
                 modifier = Modifier.clickable {
                     scope.launch { sheetState.hide() }.invokeOnCompletion {
-                        onSaveRequest(textFieldValue.value)
+                        onSaveRequest(textFieldValue.value, isSync.value)
                         if (!sheetState.isVisible) {
                             onDismissRequest()
                         }
@@ -103,7 +115,7 @@ fun NewFolderDialog(onDismissRequest: () -> Unit, onSaveRequest: (String) -> Uni
                 innerTextField = innerTextField,
                 enabled = true,
                 singleLine = true,
-                placeholder = { Text("Folder's name") },
+                placeholder = { Text(stringResource(R.string.foldername)) },
                 visualTransformation = visualTransformation,
                 interactionSource = interactionSource,
                 colors = TextFieldDefaults.colors(
@@ -117,16 +129,22 @@ fun NewFolderDialog(onDismissRequest: () -> Unit, onSaveRequest: (String) -> Uni
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
             )
         }
-        LaunchedEffect(key1 = Unit) {
+
+        Row(
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(text = "Synchronization")
+            Spacer(modifier = Modifier.width(16.dp))
+            Switch(
+                checked = isSync.value,
+                onCheckedChange = { isSync.value = it }
+            )
+        }
+
+        LaunchedEffect(key1 = SIDE_EFFECTS_KEY) {
             focusRequester.requestFocus()
         }
+
     }
 }
-
-
-//@Preview(showBackground = true)
-//@Composable
-//fun NewFolderDialogPreview() {
-//    var showBottomSheet by remember { mutableStateOf(false) }
-//    NewFolderDialog(onDismissRequest = { showBottomSheet = false })
-//}

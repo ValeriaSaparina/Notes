@@ -1,7 +1,7 @@
 package com.example.notes.api.model
 
 data class NoteItemUiModel(
-    val id: Long,
+    val id: String,
     val title: String,
     val text: String,
     val createDate: String,
@@ -11,27 +11,27 @@ data class NoteItemUiModel(
     companion object {
         fun getDefault() =
             NoteItemUiModel(
-                id = 0,
+                id = "0",
                 title = "",
                 text = "",
                 createDate = "",
                 editDate = "",
-                folder = FolderModel(-1, "Test")
+                folder = FolderModel("-1", "Test")
             )
 
         fun getDefaultList() =
             listOf(
-                getDefault().copy(id = 0),
-                getDefault().copy(id = 19),
-                getDefault().copy(id = 12),
-                getDefault().copy(id = 13),
-                getDefault().copy(id = 14),
-                getDefault().copy(id = 15),
-                getDefault().copy(id = 17),
-                getDefault().copy(id = 16),
-                getDefault().copy(id = 18),
-                getDefault().copy(id = 9),
-                getDefault().copy(id = 10),
+                getDefault().copy(id = "0"),
+                getDefault().copy(id = "19"),
+                getDefault().copy(id = "12"),
+                getDefault().copy(id = "13"),
+                getDefault().copy(id = "14"),
+                getDefault().copy(id = "15"),
+                getDefault().copy(id = "17"),
+                getDefault().copy(id = "16"),
+                getDefault().copy(id = "18"),
+                getDefault().copy(id = "9"),
+                getDefault().copy(id = "10"),
             )
     }
 }

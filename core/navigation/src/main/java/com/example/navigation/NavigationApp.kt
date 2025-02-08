@@ -67,26 +67,26 @@ fun NavigationApp() {
             route = NOTES_PATH,
             arguments = listOf(
                 navArgument(name = FOLDER_ID) {
-                    type = NavType.LongType
+                    type = NavType.StringType
                 }
             )
         ) { navBackStackEntry ->
             val folderId =
-                requireNotNull(navBackStackEntry.arguments?.getLong(FOLDER_ID)) { "Folder id is required as an argument" }
+                requireNotNull(navBackStackEntry.arguments?.getString(FOLDER_ID)) { "Folder id is required as an argument" }
             NotesScreenDestination(navController = navController, folderId = folderId)
         }
 
         composable(
             route = NOTE_PATH,
             arguments = listOf(
-                navArgument(name = FOLDER_ID) { type = NavType.LongType },
-                navArgument(name = NOTE_ID) { type = NavType.LongType }
+                navArgument(name = FOLDER_ID) { type = NavType.StringType },
+                navArgument(name = NOTE_ID) { type = NavType.StringType }
             )
         ) { navBackStackEntry ->
             val folderId =
-                requireNotNull(navBackStackEntry.arguments?.getLong(FOLDER_ID)) { "Folder id is required as an argument" }
+                requireNotNull(navBackStackEntry.arguments?.getString(FOLDER_ID)) { "Folder id is required as an argument" }
             val noteId =
-                requireNotNull(navBackStackEntry.arguments?.getLong(NOTE_ID)) { "Note id is required as an argument" }
+                requireNotNull(navBackStackEntry.arguments?.getString(NOTE_ID)) { "Note id is required as an argument" }
             NoteScreenDestination(
                 navController = navController,
                 folderId = folderId,
@@ -113,16 +113,16 @@ object Navigation {
         const val SIGN_UP = "sign_up"
         const val FOLDERS_PATH = "{${USER_ID}}/$FOLDERS"
         const val NOTE_PATH = "{${FOLDER_ID}}/$NOTES/{${NOTE_ID}}"
-        const val NOTES_PATH = "$FOLDERS_PATH/{${FOLDER_ID}}"
+        const val NOTES_PATH = "$FOLDERS/{${FOLDER_ID}}"
 
     }
 }
 
-fun NavController.navigateToNotes(folderId: Long) {
-    navigate(route = "$FOLDERS_PATH/$folderId")
+fun NavController.navigateToNotes(folderId: String) {
+    navigate(route = "$FOLDERS/$folderId")
 }
 
-fun NavController.navigateToNote(folderId: Long, noteId: Long) {
+fun NavController.navigateToNote(folderId: String, noteId: String) {
     Log.d("NAVIGATION", "TO NOTE IN NAV FUN ID = $noteId")
     navigate(route = "$folderId/$NOTES/$noteId")
 }

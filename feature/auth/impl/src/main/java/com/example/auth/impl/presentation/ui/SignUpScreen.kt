@@ -177,12 +177,3 @@ fun SignUpScreen(
         }?.collect()
     }
 }
-
-
-//@Preview(showBackground = true)
-//@Composable
-//fun SignUpPreview() {
-//    NotesTheme {
-////        SignUpScreen()
-//    }
-//}

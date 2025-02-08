@@ -28,7 +28,7 @@ import com.example.feature.folders.impl.presentation.model.FolderUiModel
 fun ExpandableList(
     modifier: Modifier = Modifier,
     sectionData: List<SectionData>,
-    onItemClicked: (Long) -> Unit,
+    onItemClicked: (String) -> Unit,
 ) {
     val isExpandedMap = rememberSavableSnapshotStateMap {
         List(sectionData.size) { index: Int -> index to true }.toMutableStateMap()
@@ -53,7 +53,7 @@ fun ExpandableList(
 fun LazyListScope.section(
     sectionData: SectionData,
     isExpanded: Boolean,
-    onItemClicked: (Long) -> Unit,
+    onItemClicked: (String) -> Unit,
     onHeaderClick: () -> Unit,
 ) {
     item {
@@ -80,7 +80,7 @@ fun LazyListScope.section(
             onItemClicked(
                 when (item) {
                     is FolderUiModel -> item.id
-                    else -> -1L
+                    else -> ""
                 }
             )
         }
@@ -102,31 +102,6 @@ fun LazyListScope.section(
         }
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun ExpandableListPreview() {
-//    ExpandableList(
-//        sectionData = listOf(
-//            SectionData(
-//                headerId = R.string.local_name_folder,
-//                items = mutableListOf(
-//                    FolderUiModel.getDefault(),
-//                    FolderUiModel.getDefault(),
-//                    FolderUiModel.getDefault()
-//                )
-//            ),
-//            SectionData(
-//                R.string.local_name_folder,
-//                items = mutableListOf(
-//                    FolderUiModel.getDefault(),
-//                    FolderUiModel.getDefault(),
-//                    FolderUiModel.getDefault()
-//                )
-//            )
-//        )
-//    ) {}
-//}
 
 private const val ANIMATION_DURATION = 500
 

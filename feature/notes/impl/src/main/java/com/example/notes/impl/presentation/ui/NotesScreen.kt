@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.designsystem.R
 import com.example.designsystem.SIDE_EFFECTS_KEY
 import com.example.designsystem.component.NetworkError
@@ -46,6 +47,7 @@ fun NotesScreen(
     effectFlow: Flow<Effect>?,
     onEventSent: (event: Event) -> Unit,
     onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit,
+    navHostController: NavHostController,
 ) {
     val title =
         remember { mutableStateOf(if (state.notesList.isNullOrEmpty()) "" else state.notesList[0].title) }
@@ -98,6 +100,10 @@ fun NotesScreen(
             }?.collect()
         }
 
+        LaunchedEffect(key1 = navHostController) {
+            onEventSent(Event.GetData)
+        }
+
         when {
             state.isLoading -> {
                 Log.d(NOTES_SCREEN_TAG, "IS LOADING")
@@ -127,7 +133,7 @@ fun NotesScreen(
 fun NotesContent(
     paddingValues: PaddingValues,
     notes: List<NoteItemUiModel>,
-    onItemClick: (Long, Long) -> Unit,
+    onItemClick: (String, String) -> Unit,
 ) {
     LazyColumn(modifier = Modifier.padding(paddingValues)) {
         itemsIndexed(items = notes, key = { _, note -> note.id }) { index, note ->

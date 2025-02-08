@@ -12,7 +12,7 @@ class GetNotesByFolderIdUseCaseImpl(
     private val repository: NotesRepository,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : GetNotesByFolderIdUseCase {
-    override suspend fun invoke(folderId: Long): Result<List<NoteDomainModel>> {
+    override suspend fun invoke(folderId: String): Result<List<NoteDomainModel>> {
         return runSuspendCatching {
             withContext(dispatcher) {
                 repository.getNotesByFolderId(folderId)

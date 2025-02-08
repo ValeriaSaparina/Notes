@@ -4,6 +4,6 @@ import com.example.notes.api.model.NoteDomainModel
 
 interface GetNotesByFolderIdUseCase {
 
-    suspend operator fun invoke(folderId: Long): Result<List<NoteDomainModel>>
+    suspend operator fun invoke(folderId: String): Result<List<NoteDomainModel>>
 
 }

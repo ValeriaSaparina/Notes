@@ -39,11 +39,11 @@ class CreateFolderUseCaseTest {
     fun `createFolder should return success result when repository call is successful`() = runTest {
         // Arrange
         val folderName = "New Folder"
-        val expectedFolderId = 123L
-        coEvery { mockRepository.createFolder(folderName) } returns expectedFolderId
+        val expectedFolderId = "123L"
+        coEvery { mockRepository.createFolder(folderName, false) } returns expectedFolderId
 
         // Act
-        val result = createFolderUseCase.invoke(folderName)
+        val result = createFolderUseCase.invoke(folderName, false)
 
         // Assert
         assertTrue(result.isSuccess)
@@ -55,10 +55,10 @@ class CreateFolderUseCaseTest {
         // Arrange
         val folderName = "New Folder"
         val expectedException = RuntimeException("Failed to create folder")
-        coEvery { mockRepository.createFolder(folderName) } throws expectedException
+        coEvery { mockRepository.createFolder(folderName, true) } throws expectedException
 
         // Act
-        val result = createFolderUseCase.invoke(folderName)
+        val result = createFolderUseCase.invoke(folderName, true)
 
         // Assert
         assertTrue(result.isFailure)

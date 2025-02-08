@@ -24,7 +24,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.designsystem.R
 import com.example.designsystem.SIDE_EFFECTS_KEY
 import com.example.designsystem.component.NetworkError
@@ -42,13 +44,14 @@ fun FoldersScreen(
     state: UiState,
     effectFlow: Flow<Effect>?,
     onEventSent: (event: Event) -> Unit,
+    navHostController: NavHostController,
     onNavigationRequested: (navigationEffect: Effect.Navigation) -> Unit,
 ) {
 
     Scaffold(
         modifier = Modifier.padding(horizontal = 16.dp),
         topBar = {
-            CenterAlignedTopAppBar(title = { Text(text = "Folders") })
+            CenterAlignedTopAppBar(title = { Text(text = stringResource(R.string.folders)) })
         },
         bottomBar = {
             BottomAppBar(containerColor = Color.Transparent) {
@@ -56,13 +59,13 @@ fun FoldersScreen(
                 if (showBottomSheet) {
                     NewFolderDialog(onDismissRequest = {
                         showBottomSheet = false
-                    }) {
-                        onEventSent(Event.OnCreateNewFolderClicked(it))
+                    }) { folderName, isSync ->
+                        onEventSent(Event.OnCreateNewFolderClicked(folderName, isSync))
                     }
                 }
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.End
                 ) {
                     Image(
                         modifier = Modifier.clickable {
@@ -70,13 +73,6 @@ fun FoldersScreen(
                             showBottomSheet = true
                         },
                         painter = painterResource(id = R.drawable.outline_create_new_folder_24),
-                        contentDescription = ""
-                    )
-                    Image(
-                        modifier = Modifier.clickable {
-                            Log.d(FOLDER_SCREEN_TAG, "add note clicked")
-                        },
-                        painter = painterResource(id = R.drawable.outline_note_add_24),
                         contentDescription = ""
                     )
                 }
@@ -99,6 +95,10 @@ fun FoldersScreen(
                     Effect.Empty -> {}
                 }
             }?.collect()
+        }
+
+        LaunchedEffect(key1 = navHostController) {
+            onEventSent(Event.GetData)
         }
 
         when {
@@ -135,12 +135,5 @@ private fun ShowData(
     }
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//fun FoldersScreenPreview() {
-////    NotesTheme {
-////        FoldersScreen(sectionData = SectionData.getDefaultList())
-////    }
-//}
 
 const val FOLDER_SCREEN_TAG = "FolderScreenTag"

@@ -26,32 +26,6 @@ class MainActivity : ComponentActivity() {
 
                     NavigationApp()
 
-//                    FoldersScreen(sectionData = SectionData.getDefaultList())
-//                    NewFolderDialog()
-
-
-//                    NoteScreen(note = NoteItemUiModel.getDefault())
-//                    MarkdownSampleTwo()
-//                    ExpandableList(
-//                        listOf(
-//                            SectionData(
-//                                "Folder",
-//                                items = listOf(
-//                                    FolderItemUiModel.getDefault(),
-//                                    FolderItemUiModel.getDefault(),
-//                                    FolderItemUiModel.getDefault()
-//                                )
-//                            ),
-//                            SectionData(
-//                                "Notes",
-//                                items = listOf(
-//                                    NoteItemUiModel.getDefault(),
-//                                    NoteItemUiModel.getDefault(),
-//                                    NoteItemUiModel.getDefault()
-//                                )
-//                            ),
-//                        )
-//                    )
                 }
             }
         }
@@ -69,12 +43,3 @@ fun HomeScreen(navigateToFolders: () -> Unit) {
         Text("Hello!")
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun GreetingPreview() {
-//    NotesTheme {
-//        Greeting("Android")
-//    }
-//}
-

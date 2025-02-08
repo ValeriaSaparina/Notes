@@ -17,8 +17,8 @@ import kotlinx.coroutines.launch
 class NoteViewModel(
     private val getNoteByIdUseCase: GetNoteByIdUseCase,
     private val updateNoteUseCase: UpdateNoteUseCase,
-    private val folderId: Long,
-    private val noteId: Long,
+    private val folderId: String,
+    private val noteId: String,
 ) : BaseViewModel<Event, UiState, Effect>() {
 
     init {
@@ -28,12 +28,12 @@ class NoteViewModel(
     override fun setInitialState(): UiState {
         return UiState(
             note = NoteItemUiModel(
-                id = 0,
+                id = "0",
                 title = "",
                 text = "",
                 createDate = "",
                 editDate = "",
-                folder = FolderModel(id = 0, name = "")
+                folder = FolderModel(id = "0", name = "")
             ),
             isLoading = false,
             isError = false
@@ -45,7 +45,7 @@ class NoteViewModel(
             Event.Empty -> TODO()
             Event.GetNote -> TODO()
             Event.OnBackClicked -> setEffect { Effect.Navigation.ToPrevious }
-            Event.Retry -> TODO()
+            Event.Retry -> getNote()
             is Event.SaveNote -> updateNote(event.note)
         }
     }
@@ -54,9 +54,6 @@ class NoteViewModel(
         viewModelScope.launch {
 //            setState { copy(isLoading = true, isError = false) }
             updateNoteUseCase.invoke(note.toDomain())
-                .onSuccess {
-
-                }
                 .onFailure { thr ->
                     Log.d("NOTE SCREEN", "SAVE FAILED: ${thr.message}")
                 }

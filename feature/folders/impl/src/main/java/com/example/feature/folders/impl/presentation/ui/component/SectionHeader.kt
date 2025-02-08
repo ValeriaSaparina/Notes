@@ -46,25 +46,3 @@ fun SectionHeader(sectionData: SectionData, isExpanded: Boolean, onHeaderClick: 
     }
 
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun HeaderItemExpandedPreview() {
-//    SectionHeader(
-//        SectionData(
-//            R.string.local_name_folder,
-//            items = mutableListOf(FolderUiModel.getDefault(), FolderUiModel.getDefault())
-//        ), true
-//    ) {}
-//}
-//
-//@Preview(showBackground = true)
-//@Composable
-//fun HeaderItemCollapsedPreview() {
-//    SectionHeader(
-//        SectionData(
-//            R.string.local_name_folder,
-//            items = mutableListOf(FolderUiModel.getDefault(), FolderUiModel.getDefault())
-//        ), false
-//    ) {}
-//}

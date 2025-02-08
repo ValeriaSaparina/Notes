@@ -48,6 +48,7 @@ dependencies {
 
     implementation(libs.koin)
     implementation(libs.koin.compose)
+    implementation(libs.bundles.firebase)
 
     implementation(project(":core:designsystem"))
     implementation(project(":feature:notes:api"))

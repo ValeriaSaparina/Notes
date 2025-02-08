@@ -12,7 +12,7 @@ class CreateNoteUseCaseImpl(
     private val repository: NotesRepository,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : CreateNoteUseCase {
-    override suspend fun invoke(note: NoteDomainModel, isSync: Boolean): Result<Long> {
+    override suspend fun invoke(note: NoteDomainModel, isSync: Boolean): Result<String> {
         return runSuspendCatching {
             withContext(dispatcher) {
                 repository.createNote(note, isSync)

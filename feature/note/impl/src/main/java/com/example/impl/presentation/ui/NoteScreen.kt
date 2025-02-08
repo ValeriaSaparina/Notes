@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.runtime.Composable
@@ -108,6 +109,7 @@ fun NoteScreen(
                 Effect.Navigation.ToPrevious -> onNavigationRequested(Effect.Navigation.ToPrevious)
             }
         }?.collect()
+        focusRequester.requestFocus()
     }
 
     when {
@@ -137,6 +139,9 @@ fun NoteScreen(
                     textStyle = TextStyle(fontWeight = FontWeight.Bold, fontSize = 24.sp),
                 )
                 BasicTextField(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(vertical = 8.dp, horizontal = 16.dp),
                     value = noteText.value, onValueChange = {
                         noteText.value = it
                         noteTextFlow.value = it
@@ -146,11 +151,5 @@ fun NoteScreen(
         }
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun NoteScreenPreview() {
-////    NoteScreen(note = NoteItemUiModel.getDefault())
-//}
 
 private const val NOTE_SCREEN_TAG = "NOTE_SCREEN_TAG"

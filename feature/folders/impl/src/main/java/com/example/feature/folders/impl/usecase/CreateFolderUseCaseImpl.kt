@@ -11,9 +11,9 @@ class CreateFolderUseCaseImpl(
     private val repository: FoldersRepository,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : CreateFolderUseCase {
-    override suspend fun invoke(folderName: String): Result<Long> {
+    override suspend fun invoke(folderName: String, isSync: Boolean): Result<String> {
         return runSuspendCatching {
-            withContext(dispatcher) { repository.createFolder(folderName) }
+            withContext(dispatcher) { repository.createFolder(folderName, isSync) }
         }
     }
 }

@@ -16,6 +16,7 @@ fun FoldersScreenDestination(navController: NavHostController, userId: String) {
         state = viewModel.viewState.value,
         effectFlow = viewModel.effect,
         onEventSent = { event -> viewModel.setEvent(event) },
+        navHostController = navController,
         onNavigationRequested = { effect ->
 
             when (effect) {

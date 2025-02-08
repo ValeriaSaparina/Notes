@@ -5,7 +5,7 @@ import com.example.common.SectionItem
 import com.example.designsystem.R
 
 class FolderUiModel(
-    val id: Long,
+    val id: String,
     @DrawableRes
     val iconId: Int = R.drawable.outline_folder_24,
     val name: String,
@@ -13,7 +13,7 @@ class FolderUiModel(
 ) : SectionItem {
     companion object {
         fun getDefault() = FolderUiModel(
-            id = 0,
+            id = "0",
             iconId = R.drawable.outline_folder_24,
             name = "Test text",
             notesNumber = -999
