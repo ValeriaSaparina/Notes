@@ -1,0 +1,9 @@
+## Tests:
+1. CreateFolderUseCaseTest
+2. IsEmailValidUseCaseTest
+3. IsAuthUseCaseTest
+4. IsPasswordValidUseCaseTest
+5. SignInUseCaseImplTest
+6. CreateFolderUseCaseTest
+7. UpdateNoteUseCaseTest
+8. GetNotesByFolderIdUseCaseTest
