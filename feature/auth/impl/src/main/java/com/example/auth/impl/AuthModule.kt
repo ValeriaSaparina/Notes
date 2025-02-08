@@ -12,6 +12,7 @@ import com.example.auth.api.usecase.SignOutUseCase
 import com.example.auth.api.usecase.SignUpUseCase
 import com.example.auth.api.usecase.validators.IsEmailValidUseCase
 import com.example.auth.api.usecase.validators.IsNameValidUseCase
+import com.example.auth.api.usecase.validators.IsNotEmptyStringUseCase
 import com.example.auth.api.usecase.validators.IsPasswordValidUseCase
 import com.example.auth.impl.datasource.local.RoomDataSource
 import com.example.auth.impl.datasource.local.SharedPreferencesDataSource
@@ -25,6 +26,7 @@ import com.example.auth.impl.usecase.SignOutUseCaseImpl
 import com.example.auth.impl.usecase.SignUpUseCaseImpl
 import com.example.auth.impl.usecase.validation.IsEmailValidUseCaseImpl
 import com.example.auth.impl.usecase.validation.IsNameValidUseCaseImpl
+import com.example.auth.impl.usecase.validation.IsNotEmptyStringUseCaseImpl
 import com.example.auth.impl.usecase.validation.IsPasswordValidUseCaseImpl
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -64,7 +66,8 @@ val authModule = module {
     factory<IsEmailValidUseCase> { IsEmailValidUseCaseImpl() }
     factory<IsNameValidUseCase> { IsNameValidUseCaseImpl() }
     factory<IsPasswordValidUseCase> { IsPasswordValidUseCaseImpl() }
+    factory<IsNotEmptyStringUseCase> { IsNotEmptyStringUseCaseImpl() }
 
     viewModel { SignUpViewModel(get(), get(), get(), get()) }
-    viewModel { SignInViewModel(get(), get()) }
+    viewModel { SignInViewModel(get(), get(), get()) }
 }

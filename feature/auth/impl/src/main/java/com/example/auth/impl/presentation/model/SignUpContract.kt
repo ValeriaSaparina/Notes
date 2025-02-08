@@ -11,6 +11,7 @@ class SignUpContract {
             Event()
 
         data object OnSignInClicked : Event()
+        data object MessageWasShowed : Event()
     }
 
     data class UiState(
@@ -19,10 +20,10 @@ class SignUpContract {
         val isWrongPassword: Boolean,
         val isLoading: Boolean,
         val isError: Boolean,
+        val errorMessage: String
     ) : ViewState
 
     sealed class Effect : ViewSideEffect {
-        data class WrongCredentials(val string: String)
         sealed class Navigation : Effect() {
             data class ToFolders(val userId: String) : Navigation()
             data object ToSignIn : Navigation()

@@ -1,6 +1,5 @@
 package com.example.auth.impl.presentation
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.auth.api.usecase.SignUpUseCase
 import com.example.auth.api.usecase.validators.IsEmailValidUseCase
@@ -10,6 +9,8 @@ import com.example.auth.impl.presentation.model.SignUpContract.Effect
 import com.example.auth.impl.presentation.model.SignUpContract.Event
 import com.example.auth.impl.presentation.model.SignUpContract.UiState
 import com.example.designsystem.BaseViewModel
+import com.google.firebase.FirebaseNetworkException
+import com.google.firebase.auth.FirebaseAuthException
 import kotlinx.coroutines.launch
 
 class SignUpViewModel(
@@ -24,7 +25,8 @@ class SignUpViewModel(
             isWrongName = false,
             isWrongPassword = false,
             isLoading = false,
-            isError = false
+            isError = false,
+            errorMessage = "",
         )
     }
 
@@ -33,6 +35,14 @@ class SignUpViewModel(
             Event.OnSignInClicked -> setEffect { Effect.Navigation.ToSignIn }
             is Event.OnSignUpClicked -> {
                 signUp(event.email, event.name, event.password)
+            }
+
+            Event.MessageWasShowed -> setState {
+                copy(
+                    isLoading = false,
+                    isError = false,
+                    errorMessage = ""
+                )
             }
         }
     }
@@ -45,9 +55,18 @@ class SignUpViewModel(
                     .onSuccess { user ->
                         setEffect { Effect.Navigation.ToFolders(user.id) }
                     }
-                    .onFailure {
-                        Log.d("SIGN UP", it.message ?: "hehehe")
-                        setState { copy(isLoading = false, isError = true) }
+                    .onFailure { throwable ->
+                        when (throwable) {
+                            is FirebaseAuthException -> {
+                                setState { copy(isLoading = false, isError = true, errorMessage = "email already exists") }
+                            }
+                            is FirebaseNetworkException -> {
+                                setState { copy(isLoading = false, isError = true, errorMessage = "network error") }
+                            }
+                            else -> {
+                                setState { copy(isLoading = false, isError = true, errorMessage = "unexpected error") }
+                            }
+                        }
                     }
             }
         }

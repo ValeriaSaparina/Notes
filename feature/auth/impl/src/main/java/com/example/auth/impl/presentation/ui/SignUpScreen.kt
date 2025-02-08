@@ -26,7 +26,6 @@ import com.example.auth.impl.presentation.model.SignUpContract.Event
 import com.example.auth.impl.presentation.model.SignUpContract.UiState
 import com.example.designsystem.SIDE_EFFECTS_KEY
 import com.example.designsystem.component.ErrorIconShow
-import com.example.designsystem.component.Progress
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
@@ -58,106 +57,105 @@ fun SignUpScreen(
     }
 
     when {
-        state.isLoading -> Progress()
         state.isError -> {
-            Toast.makeText(LocalContext.current, "Something went wrong", Toast.LENGTH_LONG).show()
-        }
-
-        else -> {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 52.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Text(
-                    text = "Sign up",
-                    style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold),
-                    modifier = Modifier.padding(vertical = 16.dp)
-                )
-                OutlinedTextField(
-                    value = name.value,
-                    modifier = Modifier.padding(top = 16.dp),
-                    placeholder = {
-                        Text(text = "your name")
-                    },
-                    singleLine = true,
-                    onValueChange = { newString ->
-                        name.value = newString
-                    },
-                    isError = isErrorEmail.value,
-                    supportingText = {
-                        if (isErrorName.value) {
-                            Text(text = "Error")
-                        }
-                    },
-                    trailingIcon = {
-                        ErrorIconShow(isErrorName.value)
-                    }
-                )
-                OutlinedTextField(
-                    value = email.value,
-                    modifier = Modifier.padding(),
-                    placeholder = {
-                        Text(text = "example@mail.com")
-                    },
-                    singleLine = true,
-                    onValueChange = { newString ->
-                        email.value = newString
-                    },
-                    isError = isErrorEmail.value,
-                    supportingText = {
-                        if (isErrorEmail.value) {
-                            Text(text = "Error")
-                        }
-                    },
-                    trailingIcon = {
-                        ErrorIconShow(isErrorEmail.value)
-                    }
-                )
-                OutlinedTextField(
-                    value = password.value,
-                    placeholder = {
-                        Text(text = "password")
-                    },
-                    singleLine = true,
-                    onValueChange = { newString ->
-                        password.value = newString
-                    },
-                    isError = isErrorPassword.value,
-                    supportingText = {
-                        if (isErrorPassword.value) {
-                            Text(text = "Error")
-                        }
-                    },
-                    trailingIcon = {
-                        ErrorIconShow(isErrorPassword.value)
-                    }
-                )
-                OutlinedButton(modifier = Modifier
-                    .padding(top = 16.dp)
-                    .fillMaxWidth(), onClick = {
-                    onEventSent(
-                        Event.OnSignUpClicked(
-                            email = email.value,
-                            password = password.value,
-                            name = name.value,
-                        )
-                    )
-                }) {
-                    Text(text = "sign up", fontSize = 16.sp)
-                }
-                Text(
-                    text = "Do have an account? Sign in!",
-                    modifier = Modifier
-                        .padding(top = 8.dp)
-                        .clickable { onEventSent(Event.OnSignInClicked) },
-                    fontSize = 16.sp
-                )
-            }
+            Toast.makeText(LocalContext.current, state.errorMessage, Toast.LENGTH_LONG).show()
+            onEventSent(Event.MessageWasShowed)
         }
     }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 52.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(
+            text = "Sign up",
+            style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold),
+            modifier = Modifier.padding(vertical = 16.dp)
+        )
+        OutlinedTextField(
+            value = name.value,
+            modifier = Modifier.padding(top = 16.dp),
+            placeholder = {
+                Text(text = "your name")
+            },
+            singleLine = true,
+            onValueChange = { newString ->
+                name.value = newString
+            },
+            isError = isErrorEmail.value,
+            supportingText = {
+                if (isErrorName.value) {
+                    Text(text = "Error")
+                }
+            },
+            trailingIcon = {
+                ErrorIconShow(isErrorName.value)
+            }
+        )
+        OutlinedTextField(
+            value = email.value,
+            modifier = Modifier.padding(),
+            placeholder = {
+                Text(text = "example@mail.com")
+            },
+            singleLine = true,
+            onValueChange = { newString ->
+                email.value = newString
+            },
+            isError = isErrorEmail.value,
+            supportingText = {
+                if (isErrorEmail.value) {
+                    Text(text = "Error")
+                }
+            },
+            trailingIcon = {
+                ErrorIconShow(isErrorEmail.value)
+            }
+        )
+        OutlinedTextField(
+            value = password.value,
+            placeholder = {
+                Text(text = "password")
+            },
+            singleLine = true,
+            onValueChange = { newString ->
+                password.value = newString
+            },
+            isError = isErrorPassword.value,
+            supportingText = {
+                if (isErrorPassword.value) {
+                    Text(text = "Error")
+                }
+            },
+            trailingIcon = {
+                ErrorIconShow(isErrorPassword.value)
+            }
+        )
+        OutlinedButton(modifier = Modifier
+            .padding(top = 16.dp)
+            .fillMaxWidth(), onClick = {
+            onEventSent(
+                Event.OnSignUpClicked(
+                    email = email.value,
+                    password = password.value,
+                    name = name.value,
+                )
+            )
+        }) {
+            Text(text = "sign up", fontSize = 16.sp)
+        }
+        Text(
+            text = "Do have an account? Sign in!",
+            modifier = Modifier
+                .padding(top = 8.dp)
+                .clickable { onEventSent(Event.OnSignInClicked) },
+            fontSize = 16.sp
+        )
+    }
+
+
 
     LaunchedEffect(key1 = state.isWrongEmail) {
         isErrorEmail.value = state.isWrongEmail

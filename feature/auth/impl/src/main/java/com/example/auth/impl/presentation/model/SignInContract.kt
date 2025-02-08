@@ -11,13 +11,15 @@ class SignInContract {
             Event()
 
         data object OnSignUpClicked : Event()
-        data object SendWrongCredentials : Event()
+        data object MessageWasShowed : Event()
     }
 
     data class UiState(
-        val wrongCredentials: Boolean,
+        val errorMessage: String,
         val isLoading: Boolean,
         val isError: Boolean,
+        val isWrongEmail: Boolean,
+        val isWrongPassword: Boolean,
     ) : ViewState
 
     sealed class Effect : ViewSideEffect {
