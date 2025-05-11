@@ -7,5 +7,5 @@ interface RemoteNotesDataSource {
     suspend fun getNotesByFolderId(folderId: String): List<NoteWithFolderDataModel>
     suspend fun getNoteById(noteId: String): NoteWithFolderDataModel
     suspend fun createNote(note: NoteDataModel): String
-
+    suspend fun updateNote(note: NoteDataModel): String
 }

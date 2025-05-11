@@ -6,6 +6,7 @@ import com.example.db.room.model.NoteWithFolderDataModel
 import com.example.notes.api.datasource.RemoteNotesDataSource
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
+import java.util.Date
 import java.util.UUID
 
 class FirebaseNotesDataSource(
@@ -35,6 +36,12 @@ class FirebaseNotesDataSource(
         val id = UUID.randomUUID().toString()
         fireStore.collection(NOTES_COLLECTION_PATH).document(id).set(note.copy(id = id))
         return id
+    }
+
+    override suspend fun updateNote(note: NoteDataModel): String {
+        val map = mapOf("text" to note.text, "title" to note.title, "editDate" to Date().time)
+        fireStore.collection(NOTES_COLLECTION_PATH).document(note.id).update(map)
+        return note.id
     }
 
     companion object {
